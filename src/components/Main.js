@@ -2,12 +2,31 @@ import React, { Component } from 'react'
 import logo from '../assets/img/rollingstore.png';
 import ProductCard from './ProductCard';
 import { Layout, Input, Row, Col } from'antd';
+import { Redirect } from 'react-router-dom';
 
 const { Header, Content, Footer } = Layout;
 const { Search } = Input;
 
 export class Main extends Component {
-    
+    constructor(props){
+        super(props);
+        this.state = {
+            redirect:false
+        }
+        this.setRedirect = this.setRedirect.bind(this);
+        this.renderRedirect = this.renderRedirect.bind(this);
+    }
+
+    setRedirect = () =>{
+        this.setState({ redirect:true})
+    }
+
+    renderRedirect = () =>{
+        if(this.state.redirect){
+            return <Redirect to='/results' />
+        }
+    }
+
     render() {
         const { userName, products } = this.props;
         return (
@@ -17,9 +36,10 @@ export class Main extends Component {
                         <Col xs={{span:5}} lg={{span:3}}><img src={logo} className="header-logo" alt="logo" /></Col>
                         <Col xs={{span:19}} lg={{span:16}}>
                             <div className="header-search">
+                            {this.renderRedirect()}
                                 <Search
                                         placeholder="¿Que queres comprar?"
-                                        onSearch={ value => console.log(value) }
+                                        onSearch={ this.setRedirect }
                                         enterButton
                                 />
                             </div>
