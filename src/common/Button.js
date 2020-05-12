@@ -3,7 +3,7 @@ import { Button } from 'antd';
 import 'antd/dist/antd.css';
 import { withTranslation } from 'react-i18next';
 
-function CommonButton(props) {
+function commonButton(props) {
     return (       
         <div>
             <Button type={props.type} danger={props.danger}>{ props.t('components.titleButton', { framework: "react-i18next" }) }</Button>
@@ -11,4 +11,4 @@ function CommonButton(props) {
     )
 }
 
-export default withTranslation('common')(CommonButton);
+export default withTranslation('common')(commonButton);

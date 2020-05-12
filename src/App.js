@@ -17,26 +17,26 @@ export default class App extends Component{
       products: [
         {
           id: 'prod01',
-          name: 'notebook',
+          name: 'Asus',
           brand: 'Asus',
           price: 19000
         },
         {
           id: 'prod02',
-          name: 'notebook',
+          name: 'HP',
           brand: 'HP',
           price: 20000
         },
         {
           id: 'prod03',
-          name: 'notebook',
+          name: 'Samsung',
           brand: 'Samsung',
           price: 21000
         },
         {
           id: 'prod04',
-          name: 'notebook',
-          brand: 'Hp',
+          name: 'Play',
+          brand: 'Play',
           price: 22000
         }
       ],
@@ -46,30 +46,44 @@ export default class App extends Component{
   }
 
   updateTerm(term){
-    this.setState({term})
+    this.setState({ term })
+  }
+
+  updateList(newList,term){
+    const { products } = this.state;
+    term !== '' ?
+      this.setState({
+        results: newList,
+        term
+      }) : 
+      this.setState({results: products})
   }
 
   render(){
-    const {userName, products, term } = this.state;
+    const { userName, products, term, results } = this.state;
     const updateTerm = this.updateTerm.bind(this);
+    const updateList = this.updateList.bind(this);
+
   return (  
     <Router>
       <Switch>
         <Route path="/" exact>
             <div className="App-container">
               <Main 
-                    userName={userName} 
+                    userName={userName}
                     products={products}
                     updateTerm={updateTerm}
                     term={term}
+                    updateList={updateList}
               />      
             </div>     
         </Route>
         <Route path="/results">
             <div className="App-container">
               <Results 
-                      userName={userName} 
-                      products={products}
+                      userName={userName}
+                      results={results}
+                      term={term}
               />      
             </div>     
         </Route>

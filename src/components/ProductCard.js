@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment  } from 'react'
 
 export class ProductCard extends Component {
     render() {
-        const { name, brand, price } = this.props.product
-
         return (
-            <div className="product-card">
-                <div>Producto: {name}</div>
-                <div>Marca: {brand}</div>
-                <div>Precio: {price}</div>
+            <Fragment>
+            <div key={this.props.product.key} className="product-card">
+                <div>Producto: {this.props.product.name}</div>
+                <div>Marca: {this.props.product.brand}</div>
+                <div>Precio: {this.props.product.price}</div>
             </div>
+            </Fragment>
         )
     }
 }

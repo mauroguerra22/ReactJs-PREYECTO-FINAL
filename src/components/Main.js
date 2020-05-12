@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import logo from '../assets/img/rollingstore.png';
 import ProductCard from './ProductCard';
+import CommonFooter from '../common/Footer';
+import CommonCarousel from '../common/Carousel';
 import { Layout, Input, Row, Col } from'antd';
 import { Redirect } from 'react-router-dom';
 
@@ -11,15 +13,15 @@ export class Main extends Component {
     constructor(props){
         super(props);
         this.state = {
-            redirect:false
+            redirect: false
         }
-        this.setRedirect = this.setRedirect.bind(this);
-        this.renderRedirect = this.renderRedirect.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.updateList = this.props.updateList.bind(this);
+
     }
 
     setRedirect = () =>{
-        this.setState({ redirect:true})
+        this.setState({ redirect: true})
     }
 
     renderRedirect = () =>{
@@ -28,9 +30,30 @@ export class Main extends Component {
         }
     }
 
-    handleChange(e){
+    handleChange(e) {    
         let term = e.target.value;
-        this.props.updateTerm(term);
+        this.props.updateTerm(term)
+    }
+
+    handleSearch(term){
+        const localTerm = term;
+        let currentProducts =[];
+        let newProducts = [];
+
+        if (localTerm !== '') {
+            currentProducts = this.props.products;
+            newProducts = currentProducts.filter(item => {
+                const lc = item.name.toLowerCase();
+                const filter = localTerm.toLowerCase();
+                return lc.includes(filter);
+            });
+            this.props.updateList(newProducts, localTerm)
+        } else {
+            newProducts = this.props.products;
+        }
+
+
+        this.setRedirect();
     }
 
     render() {
@@ -45,7 +68,7 @@ export class Main extends Component {
                             {this.renderRedirect()}
                                 <Search
                                         placeholder="¿Que queres comprar?"
-                                        onSearch={ this.setRedirect }
+                                        onSearch={ () => this.handleSearch(this.props.term) }
                                         onChange={ this.handleChange }
                                         enterButton
                                 />
@@ -58,19 +81,18 @@ export class Main extends Component {
                         </Col>
                     </Row>                    
                 </Header>
+                <CommonCarousel/>
                 <Content className="content">
                     <p> Basado en tu ultima visita </p>
                     <Row>
-                    {products.map(p =>(
+                    {products.map(prod =>(
                         <Col xs={{span:24}} lg={{span:8}}>
-                            <ProductCard product={p}/>
+                            <ProductCard key={prod.id} product={prod}/>
                         </Col>
                     ))}                   
                     </Row>
                 </Content>
-                <Footer className="footer">
-                    Footer
-                </Footer>
+                <CommonFooter/>
             </Layout>           
         );
     }

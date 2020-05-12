@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import logo from '../assets/img/rollingstore.png';
 import ProductCard from './ProductCard';
+import CommonFooter from '../common/Footer';
 import { Layout, Input, Row, Col } from'antd';
 import { Redirect } from 'react-router-dom';
 
@@ -12,14 +13,12 @@ export class Results extends Component {
     constructor(props){
         super(props);
         this.state = {
-            redirect:false
+            redirect: false
         }
-        this.setRedirect = this.setRedirect.bind(this);
-        this.renderRedirect = this.renderRedirect.bind(this);
     }
 
     setRedirect = () =>{
-        this.setState({ redirect:true})
+        this.setState({ redirect: true})
     }
 
     renderRedirect = () =>{
@@ -29,7 +28,7 @@ export class Results extends Component {
     }
 
     render() {
-        const { userName, products } = this.props;
+        const { userName, results, term } = this.props;
         return (
             <Layout>
                 <Header className="header">
@@ -40,7 +39,7 @@ export class Results extends Component {
                         <Col xs={{span:19}} lg={{span:16}}>
                             <div className="header-search">
                                 <Search
-                                        placeholder="¿Que queres comprar?"
+                                        placeholder={term}
                                         onSearch={ value => console.log(value) }
                                         enterButton
                                 />
@@ -56,16 +55,14 @@ export class Results extends Component {
                 <Content className="content">
                     <p> Resultados:  </p>
                     <Row>
-                    {products.map(p =>(
-                        <Col xs={{span:24}} lg={{span:8}}>
-                            <ProductCard product={p}/>
+                    {results.map(resul  =>(
+                        <Col xs={{span:24}} lg={{span:24}}>
+                            <ProductCard key={resul.id} product={resul}/>
                         </Col>
                     ))}                   
                     </Row>
                 </Content>
-                <Footer className="footer">
-                    Footer
-                </Footer>
+                <CommonFooter/>
             </Layout>           
         );
     }
