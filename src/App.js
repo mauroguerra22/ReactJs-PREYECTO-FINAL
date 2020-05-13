@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import Main from './components/Main';
 import Results from './components/Results';
+import Product from './components/Product';
+import Cart from './components/Cart';
+import Success from './components/Success';
 import N1 from './assets/img/Notebook/Notebook1.jpg';
 import N2 from './assets/img/Notebook/Notebook2.jpg';
 import N3 from './assets/img/Notebook/Notebook3.jpg';
@@ -121,6 +124,33 @@ export default class App extends Component{
         <Route path="/results">
             <div className="App-container">
               <Results 
+                      userName={userName}
+                      results={results}
+                      term={term}
+              />      
+            </div>     
+        </Route>
+        <Route path="/products/:id">
+            <div className="App-container">
+              <Product 
+                      userName={userName}
+                      results={results}
+                      term={term}
+              />      
+            </div>     
+        </Route>
+        <Route path="/cart">
+            <div className="App-container">
+              <Cart 
+                      userName={userName}
+                      results={results}
+                      term={term}
+              />      
+            </div>     
+        </Route>
+        <Route path="/success">
+            <div className="App-container">
+              <Success 
                       userName={userName}
                       results={results}
                       term={term}
