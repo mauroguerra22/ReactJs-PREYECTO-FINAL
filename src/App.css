@@ -4,6 +4,7 @@
   --details: #FF533D;
   --details-app:#5c0011;
   --text: #F5F5F5;
+  --text1: #8c8c8c;
   --test1: red;
   --test2: blue;
   --test3: yellow;
@@ -57,11 +58,13 @@
   font-size: 16px;
 }
 .content {
-  background-color: var(--background);
+  /*background-color: var(--background) !important;*/
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-size: 26px;
+  color: var(--text1) !important;
 }
 .footer {
   color: var(--text) !important;

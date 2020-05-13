@@ -3,10 +3,10 @@ import logo from '../assets/img/rollingstore.png';
 import ProductCard from './ProductCard';
 import CommonFooter from '../common/Footer';
 import CommonCarousel from '../common/Carousel';
-import { Layout, Input, Row, Col } from'antd';
+import { Layout, Input, Row, Col, message } from'antd';
 import { Redirect } from 'react-router-dom';
 
-const { Header, Content, Footer } = Layout;
+const { Header, Content } = Layout;
 const { Search } = Input;
 
 export class Main extends Component {
@@ -47,9 +47,14 @@ export class Main extends Component {
                 const filter = localTerm.toLowerCase();
                 return lc.includes(filter);
             });
-            this.props.updateList(newProducts, localTerm)
+            if(newProducts.length !== 0){
+                message.success('Producto encontrado correctamente');                              
+            }else{
+                message.error('No se ha encontrado el producto'); 
+            }
+            this.props.updateList(newProducts, localTerm)           
         } else {
-            newProducts = this.props.products;
+            newProducts = this.props.products;          
         }
 
 
@@ -81,13 +86,14 @@ export class Main extends Component {
                         </Col>
                     </Row>                    
                 </Header>
+                
                 <CommonCarousel/>
                 <Content className="content">
-                    <p> Basado en tu ultima visita </p>
+                    <p>Relacionado con tus visitas</p>
                     <Row>
                     {products.map(prod =>(
-                        <Col xs={{span:24}} lg={{span:8}}>
-                            <ProductCard key={prod.id} product={prod}/>
+                        <Col key={prod.id} xs={{span:2}} lg={{span:6}}>
+                            <ProductCard product={prod}/>
                         </Col>
                     ))}                   
                     </Row>

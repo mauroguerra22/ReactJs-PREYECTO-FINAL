@@ -1,5 +1,4 @@
 import React from 'react'
-import logo from '../assets/img/e-commerce.png';
 import { Layout, Tag, Row, Col } from'antd';
 import {
     TwitterOutlined,

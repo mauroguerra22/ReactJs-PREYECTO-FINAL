@@ -5,7 +5,7 @@ import CommonFooter from '../common/Footer';
 import { Layout, Input, Row, Col } from'antd';
 import { Redirect } from 'react-router-dom';
 
-const { Header, Content, Footer } = Layout;
+const { Header, Content } = Layout;
 const { Search } = Input;
 
 export class Results extends Component {
@@ -24,6 +24,12 @@ export class Results extends Component {
     renderRedirect = () =>{
         if(this.state.redirect){
             return <Redirect to='/' />
+        }
+    }
+
+    setMessage = () =>{
+        if(this.props.results.length !== 0){
+            return <p> Resultados de tu búsqueda:  </p>
         }
     }
 
@@ -52,12 +58,13 @@ export class Results extends Component {
                         </Col>
                     </Row>                    
                 </Header>
+ 
                 <Content className="content">
-                    <p> Resultados:  </p>
+                    {this.setMessage()}                   
                     <Row>
                     {results.map(resul  =>(
-                        <Col xs={{span:24}} lg={{span:24}}>
-                            <ProductCard key={resul.id} product={resul}/>
+                        <Col key={resul.id}>
+                            <ProductCard product={resul}/>
                         </Col>
                     ))}                   
                     </Row>
