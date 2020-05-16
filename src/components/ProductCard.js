@@ -5,16 +5,17 @@ const { Meta } = Card;
 
 export class ProductCard extends Component {
     render() {
+        const { name, brand, price, image } = this.props.product;
         return (
             <Fragment>
                 <Card 
                     hoverable
                     style={{ margin: 20, padding: 2, width: 260, height: 260, float: 'left', border: '1px solid #f0f0f0'}}
-                    cover={<img style={{width: 255,height: 160, border: '1px solid #f0f0f0'}} src={this.props.product.image} />}
+                    cover={<img style={{width: 255,height: 160, border: '1px solid #f0f0f0'}} src={image} />}
                 >
                     <Meta 
-                        title={this.props.product.name} 
-                        description={'Marca: '+this.props.product.brand+' | '+'Precio: $'+this.props.product.price}
+                        title={name} 
+                        description={'Marca: '+brand+' | '+'Precio: $'+price}
                     />
                 </Card>         
             </Fragment>
