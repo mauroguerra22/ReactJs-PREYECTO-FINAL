@@ -1,0 +1,52 @@
+{
+  "products" : {
+    "prod01" : {
+      "brand" : "Samsung",
+      "id" : "prod01",
+      "name" : "Notebook Samsung",
+      "price" : 19000
+    },
+    "prod02" : {
+      "brand" : "Samsung",
+      "id" : "prod02",
+      "name" : "Notebook Samsung",
+      "price" : 27000
+    },
+    "prod03" : {
+      "brand" : "HP",
+      "id" : "prod03",
+      "name" : "Notebook HP",
+      "price" : 21000
+    },
+    "prod04" : {
+      "brand" : "HP",
+      "id" : "prod04",
+      "name" : "Notebook HP",
+      "price" : 32000
+    },
+    "prod05" : {
+      "brand" : "HP",
+      "id" : "prod05",
+      "name" : "Notebook HP",
+      "price" : 37000
+    },
+    "prod06" : {
+      "brand" : "Dell",
+      "id" : "prod06",
+      "name" : "Notebook Dell",
+      "price" : 42000
+    },
+    "prod07" : {
+      "brand" : "Dell",
+      "id" : "prod07",
+      "name" : "Notebook Dell",
+      "price" : 40000
+    },
+    "prod08" : {
+      "brand" : "Macbook",
+      "id" : "prod08",
+      "name" : "Notebook Macbook",
+      "price" : 52000
+    }
+  }
+}
