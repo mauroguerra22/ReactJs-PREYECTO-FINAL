@@ -5,20 +5,14 @@ import Results from './components/Results';
 import Product from './components/Product';
 import Cart from './components/Cart';
 import Success from './components/Success';
-import N1 from './assets/img/Notebook/Notebook1.jpg';
-import N2 from './assets/img/Notebook/Notebook2.jpg';
-import N3 from './assets/img/Notebook/Notebook3.jpg';
-import N4 from './assets/img/Notebook/Notebook4.jpg';
-import N5 from './assets/img/Notebook/Notebook5.jpg';
-import N6 from './assets/img/Notebook/Notebook6.jpg';
-import N7 from './assets/img/Notebook/Notebook7.jpg';
-import N8 from './assets/img/Notebook/Notebook8.jpg';
-
+import CommonFooter from './common/Footer';
+import CommonHeader from './common/Header';
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
+import { firebaseApp } from './firebase';
 
 export default class App extends Component{
   constructor(props){
@@ -29,6 +23,30 @@ export default class App extends Component{
       results:[],
       term:''
     }
+    this.updateTerm = this.updateTerm.bind(this);
+    this.updateList = this.updateList.bind(this);
+    this.productsRef = firebaseApp.database().ref().child('products');
+  }
+
+  componentDidMount(){
+    this.listenForProducts(this.productsRef);
+  }
+
+  listenForProducts(productsRef){
+    productsRef.on('value', snap =>{
+      let products = [];
+      snap.forEach(child =>{
+        products.push({
+          name: child.val().name,
+          brand: child.val().brand,
+          price: child.val().price,
+          id: child.val().id
+        });
+      })
+
+      this.setState({ products })
+
+    });
   }
 
   updateTerm(term){
@@ -52,55 +70,48 @@ export default class App extends Component{
 
   return (  
     <Router>
+      <CommonHeader
+          userName={userName}
+          term={term}
+          updateTerm={updateTerm}
+          updateList={updateList}
+          products={products}
+        />
       <Switch>
         <Route path="/" exact>
             <div className="App-container">
               <Main 
-                    userName={userName}
                     products={products}
-                    updateTerm={updateTerm}
-                    term={term}
-                    updateList={updateList}
               />      
             </div>     
         </Route>
         <Route path="/results">
             <div className="App-container">
               <Results 
-                      userName={userName}
                       results={results}
-                      term={term}
               />      
             </div>     
         </Route>
         <Route path="/products/:id">
             <div className="App-container">
               <Product 
-                      userName={userName}
-                      results={results}
-                      term={term}
               />      
             </div>     
         </Route>
         <Route path="/cart">
             <div className="App-container">
               <Cart 
-                      userName={userName}
-                      results={results}
-                      term={term}
               />      
             </div>     
         </Route>
         <Route path="/success">
             <div className="App-container">
               <Success 
-                      userName={userName}
-                      results={results}
-                      term={term}
               />      
             </div>     
         </Route>
       </Switch>
+      <CommonFooter/>
     </Router>  
   );
   }
