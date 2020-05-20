@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Main from './components/Main';
 import Results from './components/Results';
-import Product from './components/Product';
+import ProductInfo from './components/ProductInfo';
 import Cart from './components/Cart';
 import Success from './components/Success';
 import CommonFooter from './common/Footer';
@@ -20,16 +20,24 @@ export default class App extends Component{
     this.state = {
       userName: 'Cristian',
       products: [],
+      product:{},
       results:[],
       term:''
     }
     this.updateTerm = this.updateTerm.bind(this);
     this.updateList = this.updateList.bind(this);
+    this.findProductById = this.findProductById.bind(this);
     this.productsRef = firebaseApp.database().ref().child('products');
   }
 
   componentDidMount(){
     this.listenForProducts(this.productsRef);
+  }
+
+  findProductById(id){
+    const { products } = this.state;
+    const product = products.filter(p => p.id == id);
+    this.setState({ product })
   }
 
   listenForProducts(productsRef){
@@ -64,9 +72,10 @@ export default class App extends Component{
   }
 
   render(){
-    const { userName, products, term, results } = this.state;
+    const { userName, products, term, results, product } = this.state;
     const updateTerm = this.updateTerm.bind(this);
     const updateList = this.updateList.bind(this);
+    const findProductById = this.findProductById.bind(this);
 
   return (  
     <Router>
@@ -82,6 +91,7 @@ export default class App extends Component{
             <div className="App-container">
               <Main 
                     products={products}
+                    findProductById={findProductById}
               />      
             </div>     
         </Route>
@@ -89,12 +99,14 @@ export default class App extends Component{
             <div className="App-container">
               <Results 
                       results={results}
+                      findProductById={findProductById}
               />      
             </div>     
         </Route>
         <Route path="/products/:id">
             <div className="App-container">
-              <Product 
+              <ProductInfo
+                     product={product}
               />      
             </div>     
         </Route>
