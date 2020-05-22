@@ -6,13 +6,8 @@ import { Layout, Row, Col } from'antd';
 const { Content } = Layout;
 
 export class Main extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {}
-        this.findProductById = this.props.findProductById.bind(this);
-    }
     render() {
-        const findProductById = this.findProductById.bind(this);
+        const findProductById = this.props.findProductById.bind(this);
         const { products } = this.props;
         return (
             <Layout>               

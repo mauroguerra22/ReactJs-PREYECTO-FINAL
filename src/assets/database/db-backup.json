@@ -4,49 +4,57 @@
       "brand" : "Samsung",
       "id" : "prod01",
       "name" : "Notebook Samsung",
-      "price" : 19000
+      "price" : 19000,
+      "descriptions": "Intel Core i7 10ma generacion 4 GB RAM Ssd 256gb 15,6 Pulgadas"
     },
     "prod02" : {
       "brand" : "Samsung",
       "id" : "prod02",
       "name" : "Notebook Samsung",
-      "price" : 27000
+      "price" : 27000,
+      "descriptions": "AMD Ryzen 5 Pro 2500U, 8 GB RAM DDR4, SSD 256 GB Pantalla: 14 Pulgadas, Radeon™ Vega 8 Graphics"
     },
     "prod03" : {
       "brand" : "HP",
       "id" : "prod03",
       "name" : "Notebook HP",
-      "price" : 21000
+      "price" : 21000,
+      "descriptions": "Memoria SDRAM DDR4-2133 4GB, Disco duro de 1 TB SATA y 5400 rpm, Procesador Intel® Core™ i3 de 7.ª generación (i3-7020U), Gráficos Intel® HD 620 (frecuencia base de 2,5 GHz, hasta 3,1 GHz con tecnología Intel® Turbo Boost, 3 MB de caché y 2 núcleos)"
     },
     "prod04" : {
       "brand" : "HP",
       "id" : "prod04",
       "name" : "Notebook HP",
-      "price" : 32000
+      "price" : 32000,
+      "descriptions": "HP 14 Pulgadas I3-7020U + RAM 8Gb + HDD 1Tb + Win 10 Home"
     },
     "prod05" : {
       "brand" : "HP",
       "id" : "prod05",
       "name" : "Notebook HP",
-      "price" : 37000
+      "price" : 37000,
+      "descriptions": "Procesador: Intel Core i5 8va generación, Tarjeta gráfica : Intel HD 620, Capacidad: 1 TB, Memoria RAM: 4 gb"
     },
     "prod06" : {
       "brand" : "Dell",
       "id" : "prod06",
       "name" : "Notebook Dell",
-      "price" : 42000
+      "price" : 42000,
+      "descriptions": "Procesador: i5-1035G4 (1.2 a 3.7 GHz , 6MB de caché, 4 núcleos),Tarjeta gráfica: Intel® Iris® Plus Graphics,Pantalla: 14.0 Pulgadas, Disco rígido: 128GB SSD, Memoria RAM: 4 GB DDR4"
     },
     "prod07" : {
       "brand" : "Dell",
       "id" : "prod07",
       "name" : "Notebook Dell",
-      "price" : 40000
+      "price" : 40000,
+      "descriptions": "Pantalla: 15.6 Pulgadas, Procesador Intel® Core™ i5-1035G1 / 1 GHz, 16 GB DDR4 SDRAM 2666 MHz, SSD 256 GB + 1 TB, NVIDIA® GeForce® MX230"
     },
     "prod08" : {
-      "brand" : "Macbook",
+      "brand" : "Apple",
       "id" : "prod08",
       "name" : "Notebook Macbook",
-      "price" : 52000
+      "price" : 52000,
+      "descriptions": "Processor Intel i5, Processor description Intel i5, RAM 8GB, HDD 256GB SSD, SSD SI, Operating system Mac OS"
     }
   }
 }

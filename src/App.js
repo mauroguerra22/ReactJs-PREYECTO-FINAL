@@ -37,6 +37,7 @@ export default class App extends Component{
   findProductById(id){
     const { products } = this.state;
     const product = products.filter(p => p.id == id);
+    console.log(product);
     this.setState({ product })
   }
 
@@ -48,6 +49,7 @@ export default class App extends Component{
           name: child.val().name,
           brand: child.val().brand,
           price: child.val().price,
+          descriptions: child.val().descriptions,
           id: child.val().id
         });
       })

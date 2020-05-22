@@ -13,6 +13,7 @@ export class Results extends Component {
     }
     
     render() {
+        const findProductById = this.props.findProductById.bind(this);
         const { results } = this.props;
         return (
             <Layout>
@@ -21,7 +22,7 @@ export class Results extends Component {
                     <Row>
                     {results.map(resul  =>(
                         <Col key={resul.id}>
-                            <ProductCard product={resul}/>
+                            <ProductCard product={resul} findProductById={findProductById}/>
                         </Col>
                     ))}                   
                     </Row>
