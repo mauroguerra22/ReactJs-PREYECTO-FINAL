@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
-import { Layout, Row, Col, Descriptions, Button, Tag } from'antd';
+import React, { Component, Fragment } from 'react'
+import { Row, Col, Descriptions, Button, Tag } from'antd';
+import { Redirect, Link } from 'react-router-dom'
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import { GlassMagnifier } from "react-image-magnifiers";
-
-const { Content } = Layout;
 
 export class ProductInfo extends Component {
 
@@ -12,30 +11,47 @@ export class ProductInfo extends Component {
         return photo;
     }
 
-    render() {
-        const { name, brand, price, id, descriptions } = this.props.product[0];
+    renderRedirectToError = () => {
+        return <Redirect to="/error"/>
+    }
+
+    render() {      
+         if(JSON.stringify(this.props.product) == '{}'){           
+             return this.renderRedirectToError();
+         }else{
+             console.log(this.props);
+            const { name, brand, price, id, descriptions } = this.props.product; 
+            const { product } = this.props;    
         return (
-            <div>
+            <Fragment>
                 <Row gutter={[48, 8]} className="descriptions-product">                       
-                            <Col xs={{span:13}} lg={{span:13}} className="col-img-product-info">            
+                            <Col xs={{span:24}} lg={{span:13}} className="col-img-product-info">            
                                 <GlassMagnifier className="img-product-info" imageSrc={this.getPhoto(id)}/>
                             </Col>
 
-                            <Col xs={{span:10}} lg={{span:10}}>
+                            <Col xs={{span:24}} lg={{span:10}}>
                                 <Descriptions className="descriptions-product-name" title={name}>
                                     <Descriptions.Item label="Marca">{brand}</Descriptions.Item>
-                                    <Descriptions.Item label="Precio">{"$ "+price}</Descriptions.Item>
+                                    <Descriptions.Item label="Precio">{`$${price}`}</Descriptions.Item>
                                 </Descriptions>
                                 <Descriptions  className="descriptions-product-descriptions" title="Descripcion">
                                     <p>{descriptions}</p>
                                 </Descriptions>
                                 <Tag className="descriptions-product-tag" color="green">Hay stock disponible</Tag>
                                 <br/>
-                                <Button className="descriptions-product-button-comprar" type="primary"><ShoppingCartOutlined /> Comprar ahora</Button>
+                                <Link
+                                    to={{
+                                        pathname: '/cart/',
+                                        state:{ product }
+                                    }}
+                                >
+                                    <Button className="descriptions-product-button-comprar" type="primary"><ShoppingCartOutlined /> Comprar ahora</Button>                                
+                                </Link>
                             </Col> 
                 </Row>
-            </div>
+            </Fragment>
         )
+         }  
     }
 }
 

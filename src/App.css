@@ -153,3 +153,28 @@
   width: 45%;
   margin-bottom: 5%;
 }
+
+/*==========================================================*/
+
+.cartDestails{
+  padding: 15px;
+  margin: 20px;
+  background: #fafafa;
+  /* margin-left: -25%; */
+}
+
+.inputCartDetails{
+  width: 40% !important;
+  border-radius: 7px !important;
+}
+
+.typeDetails{
+  margin-top: 15px;
+  margin-right: 15px;
+}
+
+.buttonDetails{
+  margin-left: 35%;
+  width: 30%;
+  border-radius: 7px !important;
+}

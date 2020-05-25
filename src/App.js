@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import Main from './components/Main';
-import Results from './components/Results';
-import ProductInfo from './components/ProductInfo';
-import Cart from './components/Cart';
-import Success from './components/Success';
+import Main from './pages/Main';
+import Results from './pages/Results';
+import Product from './pages/Product';
+import Cart from './pages//Cart';
+import Success from './pages/Success';
 import CommonFooter from './common/Footer';
 import CommonHeader from './common/Header';
+import Error from './common/Error';
 import {
   BrowserRouter as Router,
   Switch,
@@ -20,13 +21,18 @@ export default class App extends Component{
     this.state = {
       userName: 'Cristian',
       products: [],
-      product:{},
       results:[],
-      term:''
+      term:'',
+      cart:{
+        productToBuy: {},
+        creditCard: '',
+        shippingAddress: ''
+      }
     }
     this.updateTerm = this.updateTerm.bind(this);
     this.updateList = this.updateList.bind(this);
-    this.findProductById = this.findProductById.bind(this);
+    this.updateCart = this.updateCart.bind(this);
+
     this.productsRef = firebaseApp.database().ref().child('products');
   }
 
@@ -73,11 +79,21 @@ export default class App extends Component{
       this.setState({results: products})
   }
 
+  updateCart(prod, creditCard = '', shippingAddress = ''){
+    this.setState({ 
+      cart: {
+        productToBuy: {...prod},
+        creditCard,
+        shippingAddress
+      } 
+    })
+  }
+
   render(){
-    const { userName, products, term, results, product } = this.state;
+    const { userName, products, term, results } = this.state;
     const updateTerm = this.updateTerm.bind(this);
     const updateList = this.updateList.bind(this);
-    const findProductById = this.findProductById.bind(this);
+    const updateCart = this.updateCart.bind(this);
 
   return (  
     <Router>
@@ -93,7 +109,6 @@ export default class App extends Component{
             <div className="App-container">
               <Main 
                     products={products}
-                    findProductById={findProductById}
               />      
             </div>     
         </Route>
@@ -101,26 +116,34 @@ export default class App extends Component{
             <div className="App-container">
               <Results 
                       results={results}
-                      findProductById={findProductById}
               />      
             </div>     
         </Route>
-        <Route path="/products/:id">
+        <Route 
+          path="/product/:id"
+          render={props => 
             <div className="App-container">
-              <ProductInfo
-                     product={product}
-              />      
-            </div>     
+              <Product {...props} />      
+            </div> 
+          }>                
         </Route>
-        <Route path="/cart">
+        <Route 
+          path="/cart"
+          render={props =>
             <div className="App-container">
-              <Cart 
-              />      
-            </div>     
+              <Cart {...props} updateCart={updateCart}/>      
+            </div> 
+          }>                
         </Route>
         <Route path="/success">
             <div className="App-container">
               <Success 
+              />      
+            </div>     
+        </Route>
+        <Route path="/error">
+            <div className="App-container">
+              <Error 
               />      
             </div>     
         </Route>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ProductCard from './ProductCard';
+import ProductCard from '../components/ProductCard';
 import { Layout, Row, Col } from'antd';
 
 const { Content } = Layout;
@@ -13,7 +13,6 @@ export class Results extends Component {
     }
     
     render() {
-        const findProductById = this.props.findProductById.bind(this);
         const { results } = this.props;
         return (
             <Layout>
@@ -21,8 +20,8 @@ export class Results extends Component {
                     {this.setMessage()}                   
                     <Row>
                     {results.map(resul  =>(
-                        <Col key={resul.id}>
-                            <ProductCard product={resul} findProductById={findProductById}/>
+                        <Col key={resul.id} xs={{span:24}} lg={{ span: 12 }}>
+                            <ProductCard product={resul} />
                         </Col>
                     ))}                   
                     </Row>
