@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Layout, Result, Button } from 'antd';
+import { Link } from 'react-router-dom'
 
 const { Content } = Layout;
 
@@ -12,9 +13,13 @@ export class Success extends Component {
                     status="success"
                     title="Great, we have done all the operations!"
                     extra={[
-                    <Button type="primary" key="console">
-                        Go Home
-                    </Button>
+                        <Link to={{
+                            pathname: '/'
+                        }}>
+                            <Button type="primary" key="console">
+                                Go Home
+                            </Button>
+                        </Link>
                     ]}
                 />
                 </Content>

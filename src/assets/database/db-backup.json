@@ -55,6 +55,62 @@
       "name" : "Notebook Macbook",
       "price" : 52000,
       "descriptions": "Processor Intel i5, Processor description Intel i5, RAM 8GB, HDD 256GB SSD, SSD SI, Operating system Mac OS"
+    },
+    "prod09" : {
+      "brand" : "Apple",
+      "id" : "prod09",
+      "name" : "Funda Bolso Macbook",
+      "price" : 4000,
+      "descriptions": "Funda premiun para macbook AIR Pro 13'"
+    },
+    "prod10" : {
+      "brand" : "Apple",
+      "id" : "prod10",
+      "name" : "Funda Slim Apple Macbook",
+      "price" : 2800,
+      "descriptions": "Funda Ultra Slim diseñada especialmente para MacBook Pro 13 Touch Bar y MacBook Air 13 Touch ID"
+    },
+    "prod11" : {
+      "brand" : "Logitech",
+      "id" : "prod11",
+      "name" : "Teclado Inalámbrico",
+      "price" : 2000,
+      "descriptions": "Teclado Inalámbrico Bluetooth Logitech"
+    },
+    "prod12" : {
+      "brand" : "Genius",
+      "id" : "prod12",
+      "name" : "Mouse Gamer",
+      "price" : 520,
+      "descriptions": "Genius X-G200 en la oficina, en tu casa o donde quieras y navegá en tus dispositivos sin límites"
+    },
+    "prod13" : {
+      "brand" : "Genius",
+      "id" : "prod13",
+      "name" : "Mouse Gamer",
+      "price" : 5200,
+      "descriptions": "Mouse de juego Genius M8-610 Scorpion black"
+    },
+    "prod14" : {
+      "brand" : "Corsair",
+      "id" : "prod14",
+      "name" : "Auriculares Gamer",
+      "price" : 52000,
+      "descriptions": "Auriculares Corsair HS35 Stereo blue"
+    },
+    "prod15" : {
+      "brand" : "HyperX",
+      "id" : "prod15",
+      "name" : "Auriculares Gamer",
+      "price" : 8700,
+      "descriptions": "Auriculares gamer HyperX Cloud Stinger negro"
+    },
+    "prod16" : {
+      "brand" : "Samsung",
+      "id" : "prod16",
+      "name" : "Monitor curvo Samsung",
+      "price" : 20500,
+      "descriptions": "Disfrutá de todas las cualidades que el monitor Samsung C24F390FH tiene para ofrecerte. Vas a percibir las imágenes de una manera completamente diferente y podrás complementar cualquier espacio de tu casa."
     }
   }
 }

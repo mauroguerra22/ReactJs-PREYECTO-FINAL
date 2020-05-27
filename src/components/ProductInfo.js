@@ -19,7 +19,6 @@ export class ProductInfo extends Component {
          if(JSON.stringify(this.props.product) == '{}'){           
              return this.renderRedirectToError();
          }else{
-             console.log(this.props);
             const { name, brand, price, id, descriptions } = this.props.product; 
             const { product } = this.props;    
         return (

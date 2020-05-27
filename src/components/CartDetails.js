@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Radio, Input, Button, Space } from 'antd';
+import { Radio, Input, Button, Space, Form } from 'antd';
 import CommonModal from '../common/Modal';
 import { Link } from 'react-router-dom'
 
@@ -9,6 +9,7 @@ export class CartDetails extends Component {
     state={
         creditCard:'',
         shippingAddress:'',
+        numerotarjeta:'',
         show: false,
     }
 
@@ -24,9 +25,17 @@ export class CartDetails extends Component {
         this.setState({ show: !this.state.show })    
     }
 
+    handleChange(e) {
+        const { name, value } = e.target;
+        this.setState({
+          [name]: value
+        });
+    }
+
     render() {
         const toShowModal = this.toShowModal.bind(this);
-        const { creditCard, shippingAddress, show } = this.state
+        const handleChange = this.handleChange.bind(this);
+        const { creditCard, shippingAddress, show, numerotarjeta } = this.state
         const{ product, updateCart } = this.props
         const radioStyle = { display: 'block' }
         const showInput = true;
@@ -34,13 +43,13 @@ export class CartDetails extends Component {
         return (
             <div className="cartDestails">
                     <p>¿En que direccion quieres recibir el producto?</p>
-                    <Input placeholder="Domicilio..." className="inputCartDetails" value={shippingAddress} onChange={this.onWriteAddress} allowClear/>
+                    <Input name="domicilio" placeholder="Domicilio..." className="inputCartDetails" value={shippingAddress} onChange={this.onWriteAddress} allowClear/>                    
                     <p>¿Como quieres pagar?</p>
                     <Group value={creditCard} onChange={this.onSelectCreditCard}>                       
                                 <Space align="center" style={{ border: '1px solid #f0f0f0', padding: 20, width: '100%' }}>
                                     <Radio value='visacredito' style={radioStyle} />
                                     <p className="typeDetails">Visa Credito</p>
-                                    <Input disabled/>
+                                    <Input  disabled/>
                                     <Button type="link" onClick={() => this.toShowModal()}>Agregar tarjeta</Button>
                                 </Space>
                                 <Space align="center" style={{ border: '1px solid #f0f0f0', padding: 20, width: '100%' }}>
@@ -56,14 +65,14 @@ export class CartDetails extends Component {
                                     <Button type="link" onClick={() => this.toShowModal()}>Agregar tarjeta</Button>
                                 </Space>
                     </Group>
-                    <Link to={{
-                        pathname: '/success/'
-                    }}> 
-                    <Button className="buttonDetails" onClick={() => updateCart(product,creditCard,shippingAddress)}>Confirmar Compra</Button>  
-                    </Link>
-                    {
-                       show ? <CommonModal text='Ingrese su tarjeta' showInput={showInput} setShow={toShowModal} /> : null  
-                    }            
+                        <Link to={{
+                            pathname: '/success/'
+                        }}> 
+                        <Button className="buttonDetails" onClick={() => updateCart(product,creditCard,shippingAddress)}>Confirmar Compra</Button>  
+                        </Link>
+                        {
+                        show ? <CommonModal text='Ingrese su tarjeta' showInput={showInput} setShow={toShowModal} handleChange={handleChange}/> : null  
+                        }     
             </div>
         )
     }

@@ -8,6 +8,7 @@ import i18next from 'i18next';
 import common_de from "./assets/i18n/de.json";
 import common_en from "./assets/i18n/en.json";
 import 'antd/dist/antd.css';
+import 'react-credit-cards/es/styles-compiled.css';
 
     i18next.init({
         interpolation: { escapeValue: false },  

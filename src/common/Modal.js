@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Modal, Input } from 'antd';
+import PaymentForm from './Card';
 
 export class commonModal extends Component {
   
@@ -44,20 +45,26 @@ export class commonModal extends Component {
 
     render() {
         const { visible, confirmLoading, ModalText, showInput, valueInput } = this.state;
-
-        return (
-                <Modal
+        const inModal = true;
+        return ( 
+          <div>              
+                {
+                  showInput ? 
+                  // <Input name="numerotarjeta" onChange={this.props.handleChange} placeholder="Ingrese el numero de la tarjeta..." allowClear/> 
+                  <Modal
                     title={ModalText}
                     visible={visible}
                     onOk={this.handleOk}
                     confirmLoading={confirmLoading}
                     onCancel={this.handleCancel}
-                >
-                {
-                  showInput ? <Input placeholder="Ingrese el numero de la tarjeta..." allowClear/> : null
-                }
-
-               </Modal>
+                    okButtonProps={{ hidden: true }}
+                    cancelButtonProps={{ hidden: true }}
+                  >
+                    <PaymentForm inModal={inModal} handleOk={this.handleOk} handleCancel={this.handleCancel}/>
+                  </Modal>
+                  : null
+                }  
+          </div>            
         )
     }
 }
