@@ -11,6 +11,7 @@ export class CartDetails extends Component {
         shippingAddress:'',
         numerotarjeta:'',
         show: false,
+        allow: true,
     }
 
     onWriteAddress = e =>{
@@ -35,7 +36,7 @@ export class CartDetails extends Component {
     render() {
         const toShowModal = this.toShowModal.bind(this);
         const handleChange = this.handleChange.bind(this);
-        const { creditCard, shippingAddress, show, numerotarjeta } = this.state
+        const { creditCard, shippingAddress, show, numerotarjeta, allow } = this.state
         const{ product, updateCart } = this.props
         const radioStyle = { display: 'block' }
         const showInput = true;
@@ -65,11 +66,15 @@ export class CartDetails extends Component {
                                     <Button type="link" onClick={() => this.toShowModal()}>Agregar tarjeta</Button>
                                 </Space>
                     </Group>
-                        <Link to={{
-                            pathname: '/success/'
-                        }}> 
-                        <Button className="buttonDetails" onClick={() => updateCart(product,creditCard,shippingAddress)}>Confirmar Compra</Button>  
-                        </Link>
+                        {
+                            shippingAddress !='' && creditCard != '' ?
+                            <Link to={{
+                                pathname: '/success/'
+                            }}> 
+                            <Button className="buttonDetails" onClick={() => updateCart(product,creditCard,shippingAddress)}>Confirmar Compra</Button>  
+                            </Link> : null
+                        }
+                        
                         {
                         show ? <CommonModal text='Ingrese su tarjeta' showInput={showInput} setShow={toShowModal} handleChange={handleChange}/> : null  
                         }     

@@ -3,6 +3,7 @@ import imagen1 from '../assets/img/imagen1.jpg';
 import imagen2 from '../assets/img/imagen2.jpg';
 import imagen3 from '../assets/img/imagen3.jpg';
 import imagen4 from '../assets/img/imagen4.jpg';
+import video from '../assets/img/presentacion.mp4';
 import { Carousel } from 'antd';
 
 function commonCarousel() {
@@ -20,6 +21,9 @@ function commonCarousel() {
             <div>
                 <img className="imagen-carousel" src={imagen4}/>
             </div>
+            {/* <div>
+                <video className="imagen-carousel" controls loop src={video}></video>
+            </div> */}
         </Carousel>
     )
 }

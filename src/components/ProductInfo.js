@@ -38,14 +38,14 @@ export class ProductInfo extends Component {
                                 </Descriptions>
                                 <Tag className="descriptions-product-tag" color="green">Hay stock disponible</Tag>
                                 <br/>
-                                <Link
-                                    to={{
-                                        pathname: '/cart/',
-                                        state:{ product }
-                                    }}
-                                >
-                                    <Button className="descriptions-product-button-comprar" type="primary"><ShoppingCartOutlined /> Comprar ahora</Button>                                
-                                </Link>
+                                    <Link
+                                        to={{
+                                            pathname: '/cart/',
+                                            state:{ product }
+                                        }}
+                                    >
+                                        <Button className="descriptions-product-button-comprar" type="primary"><ShoppingCartOutlined /> Comprar ahora</Button>                                
+                                    </Link>
                             </Col> 
                 </Row>
             </Fragment>
