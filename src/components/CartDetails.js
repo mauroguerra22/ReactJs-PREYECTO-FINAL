@@ -9,9 +9,7 @@ export class CartDetails extends Component {
     state={
         creditCard:'',
         shippingAddress:'',
-        numerotarjeta:'',
         show: false,
-        allow: true,
     }
 
     onWriteAddress = e =>{
@@ -36,7 +34,7 @@ export class CartDetails extends Component {
     render() {
         const toShowModal = this.toShowModal.bind(this);
         const handleChange = this.handleChange.bind(this);
-        const { creditCard, shippingAddress, show, numerotarjeta, allow } = this.state
+        const { creditCard, shippingAddress, show } = this.state
         const{ product, updateCart } = this.props
         const radioStyle = { display: 'block' }
         const showInput = true;

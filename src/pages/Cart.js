@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Layout, Row, Col, Spin } from'antd';
+import { Redirect } from 'react-router-dom'
 import ProductCart from '../components/ProductCard';
 import CartDetails from '../components/CartDetails';          
 import CommonSpin from '../common/Spin';
@@ -17,20 +18,29 @@ export class Cart extends Component {
     }
 
     componentDidMount(){
-        const { product } = this.props.location.state
-        this.props.updateCart(product);
-        setTimeout(() => {
-            this.setState({
-              visible: false,
-            });
-          }, 4000);
+        if(this.props.location.state != undefined){ 
+            const { product } = this.props.location.state
+            this.props.updateCart(product);
+            setTimeout(() => {
+                this.setState({
+                visible: false,
+                });
+            }, 3000);
+        }
     }
 
-    render() {
-        const { product } = this.props.location.state
-        const { visible } = this.state
-        const { updateCart } = this.props
-        return (            
+    renderRedirectToError = () => {
+        return <Redirect to="/error"/>
+    }
+
+    render() {        
+        if(this.props.location.state == undefined){           
+            return this.renderRedirectToError();
+        }else{    
+            const { product } = this.props.location.state
+            const { visible } = this.state
+            const { updateCart } = this.props        
+       return (           
             <Layout>
                 {
                 visible ? <CommonSpin/>
@@ -48,6 +58,7 @@ export class Cart extends Component {
                 }               
             </Layout>
         )
+        }
     }
 }
 
