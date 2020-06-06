@@ -1,116 +1,148 @@
 {
   "products" : {
-    "prod01" : {
+    "1" : {
       "brand" : "Samsung",
-      "id" : "prod01",
+      "id" : "1",
       "name" : "Notebook Samsung",
       "price" : 19000,
-      "descriptions": "Intel Core i7 10ma generacion 4 GB RAM Ssd 256gb 15,6 Pulgadas"
+      "descriptions": "Intel Core i7 10ma generacion 4 GB RAM Ssd 256gb 15,6 Pulgadas",
+      "shippingTime": "2 días",
+      "inventory": 10
     },
-    "prod02" : {
+    "2" : {
       "brand" : "Samsung",
-      "id" : "prod02",
+      "id" : "2",
       "name" : "Notebook Samsung",
       "price" : 27000,
-      "descriptions": "AMD Ryzen 5 Pro 2500U, 8 GB RAM DDR4, SSD 256 GB Pantalla: 14 Pulgadas, Radeon™ Vega 8 Graphics"
+      "descriptions": "AMD Ryzen 5 Pro 2500U, 8 GB RAM DDR4, SSD 256 GB Pantalla: 14 Pulgadas, Radeon™ Vega 8 Graphics",
+      "shippingTime": "2 días",
+      "inventory": 10
     },
-    "prod03" : {
+    "3" : {
       "brand" : "HP",
-      "id" : "prod03",
+      "id" : "3",
       "name" : "Notebook HP",
       "price" : 21000,
-      "descriptions": "Memoria SDRAM DDR4-2133 4GB, Disco duro de 1 TB SATA y 5400 rpm, Procesador Intel® Core™ i3 de 7.ª generación (i3-7020U), Gráficos Intel® HD 620 (frecuencia base de 2,5 GHz, hasta 3,1 GHz con tecnología Intel® Turbo Boost, 3 MB de caché y 2 núcleos)"
+      "descriptions": "Memoria SDRAM DDR4-2133 4GB, Disco duro de 1 TB SATA y 5400 rpm, Procesador Intel® Core™ i3 de 7.ª generación (i3-7020U), Gráficos Intel® HD 620 (frecuencia base de 2,5 GHz, hasta 3,1 GHz con tecnología Intel® Turbo Boost, 3 MB de caché y 2 núcleos)",
+      "shippingTime": "2 días",
+      "inventory": 10
     },
-    "prod04" : {
+    "4" : {
       "brand" : "HP",
-      "id" : "prod04",
+      "id" : "4",
       "name" : "Notebook HP",
       "price" : 32000,
-      "descriptions": "HP 14 Pulgadas I3-7020U + RAM 8Gb + HDD 1Tb + Win 10 Home"
+      "descriptions": "HP 14 Pulgadas I3-7020U + RAM 8Gb + HDD 1Tb + Win 10 Home",
+      "shippingTime": "2 días",
+      "inventory": 10
     },
-    "prod05" : {
+    "5" : {
       "brand" : "HP",
-      "id" : "prod05",
+      "id" : "5",
       "name" : "Notebook HP",
       "price" : 37000,
-      "descriptions": "Procesador: Intel Core i5 8va generación, Tarjeta gráfica : Intel HD 620, Capacidad: 1 TB, Memoria RAM: 4 gb"
+      "descriptions": "Procesador: Intel Core i5 8va generación, Tarjeta gráfica : Intel HD 620, Capacidad: 1 TB, Memoria RAM: 4 gb",
+      "shippingTime": "2 días",
+      "inventory": 10
     },
-    "prod06" : {
+    "6" : {
       "brand" : "Dell",
-      "id" : "prod06",
+      "id" : "6",
       "name" : "Notebook Dell",
       "price" : 42000,
-      "descriptions": "Procesador: i5-1035G4 (1.2 a 3.7 GHz , 6MB de caché, 4 núcleos),Tarjeta gráfica: Intel® Iris® Plus Graphics,Pantalla: 14.0 Pulgadas, Disco rígido: 128GB SSD, Memoria RAM: 4 GB DDR4"
+      "descriptions": "Procesador: i5-1035G4 (1.2 a 3.7 GHz , 6MB de caché, 4 núcleos),Tarjeta gráfica: Intel® Iris® Plus Graphics,Pantalla: 14.0 Pulgadas, Disco rígido: 128GB SSD, Memoria RAM: 4 GB DDR4",
+      "shippingTime": "2 días",
+      "inventory": 10
     },
-    "prod07" : {
+    "7" : {
       "brand" : "Dell",
-      "id" : "prod07",
+      "id" : "7",
       "name" : "Notebook Dell",
       "price" : 40000,
-      "descriptions": "Pantalla: 15.6 Pulgadas, Procesador Intel® Core™ i5-1035G1 / 1 GHz, 16 GB DDR4 SDRAM 2666 MHz, SSD 256 GB + 1 TB, NVIDIA® GeForce® MX230"
+      "descriptions": "Pantalla: 15.6 Pulgadas, Procesador Intel® Core™ i5-1035G1 / 1 GHz, 16 GB DDR4 SDRAM 2666 MHz, SSD 256 GB + 1 TB, NVIDIA® GeForce® MX230",
+      "shippingTime": "2 días",
+      "inventory": 10
     },
-    "prod08" : {
+    "8" : {
       "brand" : "Apple",
-      "id" : "prod08",
+      "id" : "8",
       "name" : "Notebook Macbook",
       "price" : 52000,
-      "descriptions": "Processor Intel i5, Processor description Intel i5, RAM 8GB, HDD 256GB SSD, SSD SI, Operating system Mac OS"
+      "descriptions": "Processor Intel i5, Processor description Intel i5, RAM 8GB, HDD 256GB SSD, SSD SI, Operating system Mac OS",
+      "shippingTime": "2 días",
+      "inventory": 10
     },
-    "prod09" : {
+    "9" : {
       "brand" : "Apple",
-      "id" : "prod09",
+      "id" : "9",
       "name" : "Funda Bolso Macbook",
       "price" : 4000,
-      "descriptions": "Funda premiun para macbook AIR Pro 13'"
+      "descriptions": "Funda premiun para macbook AIR Pro 13'",
+      "shippingTime": "2 días",
+      "inventory": 10
     },
-    "prod10" : {
+    "10" : {
       "brand" : "Apple",
-      "id" : "prod10",
+      "id" : "10",
       "name" : "Funda Slim Apple Macbook",
       "price" : 2800,
-      "descriptions": "Funda Ultra Slim diseñada especialmente para MacBook Pro 13 Touch Bar y MacBook Air 13 Touch ID"
+      "descriptions": "Funda Ultra Slim diseñada especialmente para MacBook Pro 13 Touch Bar y MacBook Air 13 Touch ID",
+      "shippingTime": "2 días",
+      "inventory": 10
     },
-    "prod11" : {
+    "11" : {
       "brand" : "Logitech",
-      "id" : "prod11",
+      "id" : "11",
       "name" : "Teclado Inalámbrico",
       "price" : 2000,
-      "descriptions": "Teclado Inalámbrico Bluetooth Logitech"
+      "descriptions": "Teclado Inalámbrico Bluetooth Logitech",
+      "shippingTime": "2 días",
+      "inventory": 10
     },
-    "prod12" : {
+    "12" : {
       "brand" : "Genius",
-      "id" : "prod12",
+      "id" : "12",
       "name" : "Mouse Gamer",
       "price" : 520,
-      "descriptions": "Genius X-G200 en la oficina, en tu casa o donde quieras y navegá en tus dispositivos sin límites"
+      "descriptions": "Genius X-G200 en la oficina, en tu casa o donde quieras y navegá en tus dispositivos sin límites",
+      "shippingTime": "2 días",
+      "inventory": 10
     },
-    "prod13" : {
+    "13" : {
       "brand" : "Genius",
-      "id" : "prod13",
+      "id" : "13",
       "name" : "Mouse Gamer",
       "price" : 5200,
-      "descriptions": "Mouse de juego Genius M8-610 Scorpion black"
+      "descriptions": "Mouse de juego Genius M8-610 Scorpion black",
+      "shippingTime": "2 días",
+      "inventory": 10
     },
-    "prod14" : {
+    "14" : {
       "brand" : "Corsair",
-      "id" : "prod14",
+      "id" : "14",
       "name" : "Auriculares Gamer",
       "price" : 52000,
-      "descriptions": "Auriculares Corsair HS35 Stereo blue"
+      "descriptions": "Auriculares Corsair HS35 Stereo blue",
+      "shippingTime": "2 días",
+      "inventory": 10
     },
-    "prod15" : {
+    "15" : {
       "brand" : "HyperX",
-      "id" : "prod15",
+      "id" : "15",
       "name" : "Auriculares Gamer",
       "price" : 8700,
-      "descriptions": "Auriculares gamer HyperX Cloud Stinger negro"
+      "descriptions": "Auriculares gamer HyperX Cloud Stinger negro",
+      "shippingTime": "2 días",
+      "inventory": 10
     },
-    "prod16" : {
+    "16" : {
       "brand" : "Samsung",
-      "id" : "prod16",
+      "id" : "16",
       "name" : "Monitor curvo Samsung",
       "price" : 20500,
-      "descriptions": "Disfrutá de todas las cualidades que el monitor Samsung C24F390FH tiene para ofrecerte. Vas a percibir las imágenes de una manera completamente diferente y podrás complementar cualquier espacio de tu casa."
+      "descriptions": "Disfrutá de todas las cualidades que el monitor Samsung C24F390FH tiene para ofrecerte. Vas a percibir las imágenes de una manera completamente diferente y podrás complementar cualquier espacio de tu casa.",
+      "shippingTime": "2 días",
+      "inventory": 10
     }
   }
 }

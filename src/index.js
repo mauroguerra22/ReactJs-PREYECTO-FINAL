@@ -9,6 +9,17 @@ import common_de from "./assets/i18n/de.json";
 import common_en from "./assets/i18n/en.json";
 import 'antd/dist/antd.css';
 import 'react-credit-cards/es/styles-compiled.css';
+import  { createStore, applyMiddleware, compose } from 'redux';
+import { Provider } from 'react-redux';
+import  reducer from './reducers';
+
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; //
+
+//Inicializo mi store!
+const store = createStore(
+    reducer,
+    composeEnhancer(applyMiddleware())
+)
 
     i18next.init({
         interpolation: { escapeValue: false },  
@@ -24,11 +35,15 @@ import 'react-credit-cards/es/styles-compiled.css';
     });
 
 ReactDOM.render(
-  <I18nextProvider i18n={i18next}>
-    <App />
-  </I18nextProvider>,
+    <Provider store={store}>
+        <I18nextProvider i18n={i18next}>
+            <App />
+        </I18nextProvider>
+    </Provider>,
   document.getElementById('root')
 );
+
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
