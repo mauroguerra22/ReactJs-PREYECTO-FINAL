@@ -69,7 +69,7 @@ export class CartDetails extends Component {
                             <Link to={{
                                 pathname: '/success/'
                             }}> 
-                            <Button className="buttonDetails" onClick={() => updateCart(product,creditCard,shippingAddress)}>Confirmar Compra</Button>  
+                            <Button className="buttonDetails" onClick={() => {}}>Confirmar Compra</Button>  
                             </Link> : null
                         }
                         

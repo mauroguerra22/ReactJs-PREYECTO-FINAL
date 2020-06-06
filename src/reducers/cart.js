@@ -6,7 +6,10 @@ import {
 
   const initialState = {
     addedIds: [],
-    quantityById: {}
+    quantityById: {},
+    creditCard:'',
+    shippingAddress:'',
+    customer: 'Cristian'
   } //creamos un estado inicial 
 
   const addedIds = (state = initialState.addedIds, action) => {
@@ -33,9 +36,29 @@ import {
     }
   }
 
+  const creditCard = (state = initialState.creditCard) =>{
+    return state
+  }
+
+  const shippingAddress = (state = initialState.shippingAddress) =>{
+    return state
+  }
+
+  const customer = (state = initialState.customer) =>{
+    return state
+  }
+
   export const getQuantity = (state, productId) =>
     state.quantityById[productId] || 0
+
   export const getAddedIds = state => state.addedIds
+
+
+  export const getCreditCard = state => state.creditCard
+  export const getShippingAddress = state => state.shippingAddress
+  export const getCustomer = state => state.customer
+
+
   const cart = (state = initialState, action) => {
     switch (action.type) {
       case CHECKOUT_REQUEST:
@@ -45,7 +68,10 @@ import {
       default:
         return {
           addedIds: addedIds(state.addedIds, action),
-          quantityById: quantityById(state.quantityById, action)
+          quantityById: quantityById(state.quantityById, action),
+          creditCard: creditCard(state.creditCard),
+          shippingAddress: shippingAddress(state.shippingAddress),
+          customer: customer(state.customer)
         }
     }
   }

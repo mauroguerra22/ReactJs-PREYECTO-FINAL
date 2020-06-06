@@ -2,11 +2,13 @@ import React, { Component } from 'react'
 import logo from '../assets/img/rollingstore.png';
 import { Layout, Row, Col, Input, message } from 'antd';
 import { Redirect } from 'react-router-dom'
+import { getInfoCustomer } from '../reducers';
+import { connect } from "react-redux";
 
 const { Header } = Layout;
 const { Search } = Input;
 
-export class commonHeader extends Component {
+class commonHeader extends Component {
 
     constructor(props) {
         super(props);
@@ -81,7 +83,7 @@ export class commonHeader extends Component {
     }
 
     render() {
-        const { userName } = this.props;
+        const { customer } = this.props;
 
         return(
             <Header className='header'>
@@ -109,7 +111,7 @@ export class commonHeader extends Component {
                         </div>
                     </Col>
                     <Col xs={{ span: 0 }} lg={{ span: 5 }}>
-                        <div className='header-greetings'>Bienvenido {userName}</div>
+                        <div className='header-greetings'>Bienvenido {customer}</div>
                     </Col>
                 </Row>
             </Header>
@@ -117,4 +119,8 @@ export class commonHeader extends Component {
     }
 }
 
-export default commonHeader
+const mapStateToProps = state =>({
+    customer: getInfoCustomer(state)
+})
+
+export default connect(mapStateToProps)(commonHeader)
