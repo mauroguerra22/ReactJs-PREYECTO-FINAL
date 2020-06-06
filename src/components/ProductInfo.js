@@ -3,6 +3,7 @@ import { Row, Col, Descriptions, Button, Tag } from'antd';
 import { Redirect, Link } from 'react-router-dom'
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import { GlassMagnifier } from "react-image-magnifiers";
+import PropTypes from 'prop-types';
 
 export class ProductInfo extends Component {
 
@@ -20,7 +21,7 @@ export class ProductInfo extends Component {
              return this.renderRedirectToError();
          }else{
             const { name, brand, price, id, descriptions } = this.props.product; 
-            const { product } = this.props;    
+            const { product, onAddToCartClicked } = this.props;    
         return (
             <Fragment>
                 <Row gutter={[48, 8]} className="descriptions-product">                       
@@ -44,7 +45,7 @@ export class ProductInfo extends Component {
                                             state:{ product }
                                         }}
                                     >
-                                        <Button className="descriptions-product-button-comprar" type="primary"><ShoppingCartOutlined /> Comprar ahora</Button>                                
+                                        <Button onClick={onAddToCartClicked} className="descriptions-product-button-comprar" type="primary"><ShoppingCartOutlined /> Comprar ahora</Button>                                
                                     </Link>
                             </Col> 
                 </Row>
@@ -52,6 +53,17 @@ export class ProductInfo extends Component {
         )
          }  
     }
+}
+
+ProductInfo.propTypes = {
+    product: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        brand: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        id: PropTypes.number.isRequired,
+        descriptions: PropTypes.string.isRequired,
+    }),
+    onAddToCartClicked: PropTypes.func.isRequired
 }
 
 export default ProductInfo

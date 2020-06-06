@@ -12,14 +12,25 @@ import 'react-credit-cards/es/styles-compiled.css';
 import  { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import  reducer from './reducers';
+import thunk from 'redux-thunk';
+import { getAllProducts, getFetchedProducts } from "./actions";
+import { createLogger } from "redux-logger";
+
+const middleware = [ thunk ]
+if (process.env.NODE_ENV != 'production'){
+    middleware.push(createLogger());
+}
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; //
 
 //Inicializo mi store!
 const store = createStore(
     reducer,
-    composeEnhancer(applyMiddleware())
+    composeEnhancer(applyMiddleware(...middleware))
 )
+
+store.dispatch(getFetchedProducts());
+
 
     i18next.init({
         interpolation: { escapeValue: false },  

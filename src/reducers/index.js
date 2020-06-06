@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux' //uso esto cuando uso redux para distintas cosas es como tener dos reducers. (TENER COMO GRUPO DE FUNCIONALIDAES)
 import cart, * as fromCart from './cart'
 import products, * as fromProducts from './product'
 

@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { checkout } from "../actions";
+import { getTotal, getCartProducts } from "../reducers";
 import { Layout, Row, Col, Spin } from'antd';
 import { Redirect } from 'react-router-dom'
 import ProductCart from '../components/ProductCard';
 import CartDetails from '../components/CartDetails';          
 import CommonSpin from '../common/Spin';
+
 
 const { Content } = Layout;
 
@@ -62,4 +67,24 @@ export class Cart extends Component {
     }
 }
 
-export default Cart
+Cart.propTypes = {
+    products: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      quantity: PropTypes.number.isRequired
+    })).isRequired,
+    total: PropTypes.string,
+    checkout: PropTypes.func
+  }
+
+  const mapStateToProps = (state) => ({
+    products: getCartProducts(state),
+    total: getTotal(state)
+  })
+
+  export default connect(
+    mapStateToProps,
+    { checkout }
+  )(Cart) 
+
