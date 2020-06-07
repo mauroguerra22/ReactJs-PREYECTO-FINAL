@@ -24,7 +24,6 @@ export class Cart extends Component {
 
     componentDidMount(){
         if(this.props.location.state != undefined){ 
-            const { product } = this.props.location.state
             setTimeout(() => {
                 this.setState({
                 visible: false,
