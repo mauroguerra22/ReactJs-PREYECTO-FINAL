@@ -2,7 +2,8 @@
   --background: white;
   --secondary: #0F1626;
   --details: #FF533D;
-  --details-app:#5c0011;
+  /*--details-app:#5c0011;*/
+  --details-app:#1a1a1a;
   --text: #F5F5F5;
   --text1: #8c8c8c;
   --test1: red;
@@ -84,6 +85,15 @@
 
 .content {
   /*background-color: var(--background) !important;*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+  color: var(--text1) !important;
+}
+.content-login {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)),url('./assets/img/fondo.jpg');
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -177,4 +187,12 @@
   margin-left: 35%;
   width: 30%;
   border-radius: 7px !important;
+}
+
+/*===========================================================*/
+
+.keepShopping-link {
+  display: flex;
+  justify-content: center;
+  color: var(--secondary);
 }

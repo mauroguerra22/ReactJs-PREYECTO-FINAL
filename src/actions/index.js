@@ -1,21 +1,21 @@
 import shop from '../api/shop'
-import { firebaseApp } from '../firebase';
+import { firebaseApp } from "../firebase";
 import * as types from '../constants/ActionTypes'
 
 const Products = firebaseApp.database().ref().child('products');
 
 const fetchProducts = products => {
-    return {
-        type: types.FETCH_PRODUCTS,
-        products
-    }
+  return {
+    type: types.FETCH_PRODUCTS,
+    products
+  }
 }
 
-export const getFetchedProducts = () => dispatch =>{
-        Products.on('value', snapshot=>{
-            dispatch(fetchProducts(snapshot.val()))            
-        })
-} 
+export const getFetchedProducts = () => dispatch => {
+  Products.on('value', snapshot => {
+    dispatch(fetchProducts(snapshot.val()))
+  })
+}
 
 const receiveProducts = products => ({
   type: types.RECEIVE_PRODUCTS,
@@ -39,10 +39,10 @@ export const addToCart = productId => (dispatch, getState) => {
   }
 }
 
-export const updateCart = (newShippingAddress, newCreditCard) => dispatch =>{
+export const checkoutCart = (newShippingAddress, newCreditCard) => dispatch =>  {
   dispatch({
-    type: types.UPDATE_CART,
-    payload:{
+    type: types.CHECKOUT_CART,
+    payload: {
       newShippingAddress,
       newCreditCard
     }
@@ -51,6 +51,7 @@ export const updateCart = (newShippingAddress, newCreditCard) => dispatch =>{
 
 export const checkout = products => (dispatch, getState) => {
   const { cart } = getState()
+
   dispatch({
     type: types.CHECKOUT_REQUEST
   })

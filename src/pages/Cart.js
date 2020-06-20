@@ -2,13 +2,18 @@ import React, { Component } from 'react'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { checkout } from "../actions";
-import { getTotal, getCartProducts, getInfoCustomer, getInfoShippingAddress, getInfoCreditCard } from "../reducers";
-import { Layout, Row, Col, Spin } from'antd';
-import { Redirect } from 'react-router-dom'
-import ProductCart from '../components/ProductCard';
+import { 
+    getTotal, 
+    getCartProducts, 
+    getInfoCustomer, 
+    getInfoShippingAddress, 
+    getInfoCreditCard 
+} from "../reducers";
+import { Layout, Row, Col } from'antd';
+import ProductsInCart from '../components/ProductsInCart';
 import CartDetails from '../components/CartDetails';          
 import CommonSpin from '../common/Spin';
-
+import { Redirect, Link } from 'react-router-dom'
 
 const { Content } = Layout;
 
@@ -40,9 +45,8 @@ export class Cart extends Component {
         if(this.props.location.state == undefined){           
             return this.renderRedirectToError();
         }else{    
-            const { product } = this.props.location.state
             const { visible } = this.state
-            const { customer, shippingAddress, creditCard } = this.props        
+            const { customer, shippingAddress, creditCard, products } = this.props        
        return (           
             <Layout>
                 {
@@ -51,11 +55,17 @@ export class Cart extends Component {
                 <Content className="content">
                     <p>Carrito de {customer} </p>
                     <Row>
-                        <Col xs={{span: 24}} lg={{ span:6 }}>
-                            <ProductCart product={product} />
+                        <Col xs={{ span: 24 }} lg={{ span: 12 }}>
+                            <ProductsInCart products={products} />
                         </Col>
-                        <Col xs={{span: 24}} lg={{ span:18 }}>
-                            <CartDetails product={product} shippingAddress={shippingAddress} creditCard={creditCard}/>        
+                        <Col xs={{ span: 24 }} lg={{ span: 12 }}>
+                            <CartDetails
+                                shippingAddress={shippingAddress}
+                                creditCard={creditCard}
+                            />
+                        <Link to= {{ pathname: '/home' }} className="keepShopping-link">
+                            Seguir comprando
+                        </Link>
                         </Col>
                     </Row>
                 </Content>
@@ -69,14 +79,14 @@ export class Cart extends Component {
 Cart.propTypes = {
     products: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
+      //title: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
       quantity: PropTypes.number.isRequired
     })).isRequired,
     total: PropTypes.string,
     checkout: PropTypes.func
   }
-
+  
   const mapStateToProps = state => ({
     products: getCartProducts(state),
     total: getTotal(state),
@@ -88,5 +98,5 @@ Cart.propTypes = {
   export default connect(
     mapStateToProps,
     { checkout }
-  )(Cart) 
+  )(Cart)
 

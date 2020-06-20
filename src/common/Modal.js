@@ -50,7 +50,6 @@ export class commonModal extends Component {
           <div>              
                 {
                   showInput ? 
-                  // <Input name="numerotarjeta" onChange={this.props.handleChange} placeholder="Ingrese el numero de la tarjeta..." allowClear/> 
                   <Modal
                     title={ModalText}
                     visible={visible}

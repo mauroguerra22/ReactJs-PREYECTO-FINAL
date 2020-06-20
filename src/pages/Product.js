@@ -17,7 +17,9 @@ export class Product extends Component {
         return(
           <Layout>
             <Content className="content">
-              <ProductInfo product={product} onAddToCartClicked={() => addToCart(product.id)}/>
+              <ProductInfo 
+                          product={product} 
+                          onAddToCartClicked={() => addToCart(product.id)}/>
             </Content>
           </Layout>
         )
@@ -27,7 +29,7 @@ export class Product extends Component {
 Product.propTypes = {
   products: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
+    //title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     inventory: PropTypes.number.isRequired
   })).isRequired,

@@ -20,8 +20,8 @@ export class ProductInfo extends Component {
          if(JSON.stringify(this.props.product) == '{}'){           
              return this.renderRedirectToError();
          }else{
-            const { name, brand, price, id, descriptions } = this.props.product; 
-            const { product, onAddToCartClicked } = this.props;    
+            const { name, brand, price, id, description, shippingTime } = this.props.product;
+            const { product, onAddToCartClicked } = this.props;   
         return (
             <Fragment>
                 <Row gutter={[48, 8]} className="descriptions-product">                       
@@ -35,7 +35,7 @@ export class ProductInfo extends Component {
                                     <Descriptions.Item label="Precio">{`$${price}`}</Descriptions.Item>
                                 </Descriptions>
                                 <Descriptions  className="descriptions-product-descriptions" title="Descripcion">
-                                    <p>{descriptions}</p>
+                                    <p>{description}</p>
                                 </Descriptions>
                                 <Tag className="descriptions-product-tag" color="green">Hay stock disponible</Tag>
                                 <br/>
@@ -45,7 +45,7 @@ export class ProductInfo extends Component {
                                             state:{ product }
                                         }}
                                     >
-                                        <Button onClick={onAddToCartClicked} className="descriptions-product-button-comprar" type="primary"><ShoppingCartOutlined /> Comprar ahora</Button>                                
+                                        <Button onClick={onAddToCartClicked} className="descriptions-product-button-comprar" type="primary"><ShoppingCartOutlined />Comprar</Button>                                
                                     </Link>
                             </Col> 
                 </Row>
@@ -57,13 +57,14 @@ export class ProductInfo extends Component {
 
 ProductInfo.propTypes = {
     product: PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        brand: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        id: PropTypes.number.isRequired,
-        descriptions: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      brand: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      id: PropTypes.number.isRequired,
+      description: PropTypes.string.isRequired,
+      shippingTime: PropTypes.string.isRequired,
     }),
     onAddToCartClicked: PropTypes.func.isRequired
-}
+  }
 
 export default ProductInfo

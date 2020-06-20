@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import logo from '../assets/img/rollingstore.png';
 import { Layout, Row, Col, Input, message } from 'antd';
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import { getInfoCustomer } from '../reducers';
 import { connect } from "react-redux";
 
@@ -21,12 +21,13 @@ class commonHeader extends Component {
     }
 
     setRedirectToMain = () => {
+        this.handleClearTerm()
+        this.props.updateList([], '')
         this.setState({
-            redirectToMain: true,
-            redirectToResults: false,
+          redirectToMain: true,
+          redirectToResults: false,
         })
-        this.handleClearTerm();
-    }
+      }
 
     renderRedirectToMain = () => {
         if (this.state.redirectToMain) {
@@ -61,7 +62,7 @@ class commonHeader extends Component {
         let currentProducts = [];
         let newProducts = [];
 
-        if (localTerm !== '') {
+        if (localTerm !== '' && localTerm.length > 1) {
             currentProducts = this.props.products;
             newProducts = currentProducts.filter(item => {
                 const lc = item.name.toLowerCase();
@@ -75,8 +76,9 @@ class commonHeader extends Component {
             }
             this.props.updateList(newProducts, localTerm)
         } else {
-            newProducts = this.props.products;
-            message.error('No se ha encontrado el producto');
+            this.props.updateList(this.props.products, localTerm)
+            message.error('Debe ingresar al menos 2 caracteres');
+            return true
         }
 
         this.setRedirectToResults();
@@ -84,13 +86,14 @@ class commonHeader extends Component {
 
     render() {
         const { customer } = this.props;
-
         return(
             <Header className='header'>
                 <Row>
                     <Col xs={{ span: 5 }} lg={{ span: 3 }}>
                         {this.renderRedirectToMain()}
-                        <img src={logo} className='header-logo' alt='logo' onClick={this.setRedirectToMain} />
+                        <Link to={{ pathname: '/home' }}>
+                            <img src={logo} className='header-logo' alt='logo' onClick={this.setRedirectToMain} />
+                        </Link>                       
                     </Col>
                     <Col xs={{ span: 19 }} lg={{ span: 16 }}>
                         <div className='header-search'>
@@ -119,8 +122,10 @@ class commonHeader extends Component {
     }
 }
 
-const mapStateToProps = state =>({
+const mapStateToProps = state => ({
     customer: getInfoCustomer(state)
-})
-
-export default connect(mapStateToProps)(commonHeader)
+  })
+  
+  export default connect(
+    mapStateToProps
+  )(commonHeader)

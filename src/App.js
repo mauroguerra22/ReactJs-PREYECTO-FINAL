@@ -13,126 +13,115 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import { firebaseApp } from './firebase';
 import { connect } from "react-redux";
 import { getVisibleProducts } from "./reducers/product";
+import Login from './pages/Login'
 
 class App extends Component{
   constructor(props){
     super(props);
     this.state = {
       results:[],
-      term:''
+      term:'',
+      visible: false
     }
     this.updateTerm = this.updateTerm.bind(this);
     this.updateList = this.updateList.bind(this);
-
-    this.productsRef = firebaseApp.database().ref().child('products');
-  }
-
-  componentDidMount(){
-    this.listenForProducts(this.productsRef);
-  }
-
-  findProductById(id){
-    const { products } = this.state;
-    const product = products.filter(p => p.id == id);
-    console.log(product);
-    this.setState({ product })
-  }
-
-  listenForProducts(productsRef){
-    productsRef.on('value', snap =>{
-      let products = [];
-      snap.forEach(child =>{
-        products.push({
-          name: child.val().name,
-          brand: child.val().brand,
-          price: child.val().price,
-          descriptions: child.val().descriptions,
-          id: child.val().id
-        });
-      })
-
-      this.setState({ products })
-
-    });
   }
 
   updateTerm(term){
     this.setState({ term })
   }
 
-  updateList(newList,term){
-    const { products } = this.state;
+  updateList(newList, term) {
     term !== '' ?
       this.setState({
         results: newList,
         term
-      }) : 
-      this.setState({results: products})
+      })
+    : 
+      this.setState({results: []})
+  }
+
+  setVisible = () => {
+    this.setState({
+      visible: true
+    })
   }
 
   render(){
-    const { term, results } = this.state;
+    const { term, results, visible } = this.state;
     const { products } = this.props;
     const updateTerm = this.updateTerm.bind(this);
     const updateList = this.updateList.bind(this);
-
-  return (  
-    <Router>
-      <CommonHeader
-          term={term}
-          updateTerm={updateTerm}
-          updateList={updateList}
-          products={products}
-        />
+    const setVisible = this.setVisible.bind(this);
+    
+    return ( 
+      <Router>
+      {
+        visible ? 
+        <CommonHeader
+            term={term}
+            updateTerm={updateTerm}
+            updateList={updateList}
+            products={products}/>
+        : null
+      }
       <Switch>
-        <Route path="/" exact>
-            <div className="App-container">
-              <Main 
-                    products={products}
-              />      
-            </div>     
-        </Route>
-        <Route path="/results">
-            <div className="App-container">
-              <Results 
-                      results={results}
-              />      
-            </div>     
-        </Route>
-        <Route 
-          path="/product/:id"
-          render={props => 
-            <div className="App-container">
-              <Product {...props} />      
-            </div> 
-          }>                
-        </Route>
-        <Route 
-          path="/cart"
-          render={props =>
-            <div className="App-container">
-              <Cart {...props} />      
-            </div> 
-          }>                
-        </Route>
-        <Route path="/success">
-            <div className="App-container">
-              <Success 
-              />      
-            </div>     
-        </Route>
-        <Route path="/error">
-            <div className="App-container">
-              <Error 
-              />      
-            </div>     
-        </Route>
+            <Route path="/" exact>
+                <div className="App-container">
+                  <Login visible={visible} setVisible={setVisible}/>
+                </div>     
+            </Route>
+            <Route path="/home">
+                <div className="App-container">
+                  <Main 
+                        products={products}
+                        />      
+                </div>     
+            </Route>
+            <Route path="/results">
+                <div className="App-container">
+                  <Results 
+                          results={results}
+                  />      
+                </div>     
+            </Route>
+            <Route 
+              path="/product/:id"
+              render={props => 
+                <div className="App-container">
+                  <Product {...props} />      
+                </div> 
+              }>                
+            </Route>
+            <Route 
+              path="/cart"
+              render={props =>
+                <div className="App-container">
+                  <Cart {...props} />      
+                </div> 
+              }>                
+            </Route>
+            <Route path="/success">
+                <div className="App-container">
+                  <Success 
+                  />      
+                </div>     
+            </Route>
+            <Route path="/error">
+                <div className="App-container">
+                  <Error 
+                  />      
+                </div>     
+            </Route>
       </Switch>
-      <CommonFooter/>
-    </Router>  
+      {
+        visible ? 
+        <CommonFooter/>
+        : null
+      }
+    </Router>
   );
   }
 }
@@ -141,4 +130,6 @@ const mapStateToProps = state =>({
   products: getVisibleProducts(state.products)
 })
 
-export default connect(mapStateToProps)(App)
+export default connect(
+  mapStateToProps
+)(App)
