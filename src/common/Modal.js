@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Modal, Input } from 'antd';
+import { Modal } from 'antd';
 import PaymentForm from './Card';
 
 export class commonModal extends Component {
@@ -44,7 +44,7 @@ export class commonModal extends Component {
     };
 
     render() {
-        const { visible, confirmLoading, ModalText, showInput, valueInput } = this.state;
+        const { visible, confirmLoading, ModalText, showInput } = this.state;
         const inModal = true;
         return ( 
           <div>              

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import logo from '../assets/img/rollingstore.png';
-import { Layout, Row, Col, Input, message } from 'antd';
+import { Layout, Row, Col, Input, message, Menu, Dropdown, Button } from 'antd';
+import { UserOutlined, ShoppingCartOutlined, HeartOutlined, LoginOutlined } from '@ant-design/icons';
 import { Redirect, Link } from 'react-router-dom'
 import { getInfoCustomer } from '../reducers';
 import { connect } from "react-redux";
@@ -31,7 +32,7 @@ class commonHeader extends Component {
 
     renderRedirectToMain = () => {
         if (this.state.redirectToMain) {
-           return <Redirect to='/' />
+           return <Redirect to='/home' />
         }
     }
 
@@ -86,6 +87,25 @@ class commonHeader extends Component {
 
     render() {
         const { customer } = this.props;
+
+        const menu = (
+            <Menu>
+                <Menu.Item key="1" style={{textAlign: 'center', color: 'black', fontSize: 15 }}>
+                    <p>{customer}</p>
+                    <Button type="link">Ver Perfil</Button>
+                </Menu.Item>
+                <Menu.Item key="2" icon={<ShoppingCartOutlined />}>
+                    Mis Compras
+                </Menu.Item>
+                <Menu.Item key="3" icon={<HeartOutlined />}>
+                    Mis Favoritos
+                </Menu.Item>
+                <Menu.Item key="4" icon={<LoginOutlined />}>
+                    Cerrar sesión
+                </Menu.Item>
+            </Menu>
+          );
+
         return(
             <Header className='header'>
                 <Row>
@@ -114,7 +134,9 @@ class commonHeader extends Component {
                         </div>
                     </Col>
                     <Col xs={{ span: 0 }} lg={{ span: 5 }}>
-                        <div className='header-greetings'>Bienvenido {customer}</div>
+                        <Dropdown.Button className='header-greetings' overlay={menu} placement="bottomCenter" icon={<UserOutlined />}>
+                            Bienvenido {customer}
+                        </Dropdown.Button>
                     </Col>
                 </Row>
             </Header>

@@ -28,7 +28,7 @@ export class PaymentForm  extends Component {
 
       validateFields = () =>{
           const {cvc, expiry, name, number } = this.state;
-          if(cvc != '' && expiry !='' && name !='' && number !=''){
+          if(cvc !== '' && expiry !== '' && name !== '' && number !== ''){
             this.props.handleOk();
           }else{
               this.openNotificationWithIcon('error');

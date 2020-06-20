@@ -17,7 +17,7 @@ export class ProductInfo extends Component {
     }
 
     render() {      
-         if(JSON.stringify(this.props.product) == '{}'){           
+         if(JSON.stringify(this.props.product) === '{}'){           
              return this.renderRedirectToError();
          }else{
             const { name, brand, price, id, description, shippingTime } = this.props.product;
@@ -36,6 +36,7 @@ export class ProductInfo extends Component {
                                 </Descriptions>
                                 <Descriptions  className="descriptions-product-descriptions" title="Descripcion">
                                     <p>{description}</p>
+                                    <p>{shippingTime}</p>
                                 </Descriptions>
                                 <Tag className="descriptions-product-tag" color="green">Hay stock disponible</Tag>
                                 <br/>

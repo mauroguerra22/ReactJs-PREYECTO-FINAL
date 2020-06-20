@@ -28,7 +28,7 @@ export class Cart extends Component {
     }
 
     componentDidMount(){
-        if(this.props.location.state != undefined){ 
+        if(this.props.location.state !== undefined){ 
             setTimeout(() => {
                 this.setState({
                 visible: false,
@@ -42,7 +42,7 @@ export class Cart extends Component {
     }
 
     render() {        
-        if(this.props.location.state == undefined){           
+        if(this.props.location.state === undefined){           
             return this.renderRedirectToError();
         }else{    
             const { visible } = this.state

@@ -7,7 +7,7 @@ import  { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import  reducer from './reducers';
 import thunk from 'redux-thunk';
-import { getAllProducts, getFetchedProducts } from "./actions";
+import { getFetchedProducts } from "./actions";
 import { createLogger } from "redux-logger";
 import 'antd/dist/antd.css';
 import {I18nextProvider} from 'react-i18next';
@@ -18,7 +18,7 @@ import 'react-credit-cards/es/styles-compiled.css';
 
 /*==================CONFIG THE STORE=================*/
 const middleware = [ thunk ]
-if (process.env.NODE_ENV != 'production'){
+if (process.env.NODE_ENV !== 'production'){
     middleware.push(createLogger());
 }
 

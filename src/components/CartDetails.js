@@ -62,7 +62,7 @@ export class CartDetails extends Component {
                         </Group>
                     <p>Total: ${ total }</p>
                         {
-                            shippingAddress !='' && creditCard != '' ?
+                            shippingAddress !== '' && creditCard !== '' ?
                             <Link to={{
                                 pathname: '/success'
                             }}> 

@@ -10,7 +10,6 @@ const { Content } = Layout;
 
 export class Product extends Component {
     render() {
-        const { id } = this.props.match.params
         const { product } = this.props.location.state
         const { addToCart } = this.props
 

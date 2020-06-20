@@ -24,7 +24,7 @@ export class ProductCard extends Component {
                 <Card 
                     hoverable
                     style={{ margin: 20, padding: 2, width: 260, height: 260, float: 'left', border: '1px solid #f0f0f0'}}
-                    cover={<img style={{width: 255,height: 160, border: '1px solid #f0f0f0'}} src={this.getPhoto(id)} />}
+                    cover={<img alt="imagenProduct" style={{width: 255,height: 160, border: '1px solid #f0f0f0'}} src={this.getPhoto(id)} />}
                 >
                     <Meta 
                         title={name} 
