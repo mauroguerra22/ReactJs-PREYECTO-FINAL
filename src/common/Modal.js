@@ -13,8 +13,7 @@ export class commonModal extends Component {
         showInput: props.showInput,
       };
   }  
-  
-    
+     
     showModal = () => {
         this.setState({
           visible: true,

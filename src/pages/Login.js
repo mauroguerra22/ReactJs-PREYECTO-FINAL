@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Form, Input, Button, Checkbox, Card, Layout } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
+import CommonDrawer from '../common/Drawer';
 
 const { Content, Header, Footer } = Layout;
 
@@ -12,10 +14,15 @@ export class Login extends Component {
     
         this.state = {
              google:{},
-             facebook:{}
+             facebook:{},
+             show: false
         }
     }
     
+    toShowDrawer(){
+        this.setState({ show: !this.state.show })    
+    }
+
     componentClicked = () => console.log("clicked");
 
     responseFacebook = (response) => {
@@ -45,6 +52,9 @@ export class Login extends Component {
     }
 
     render() {
+        const { show } = this.state
+        const toShowDrawer = this.toShowDrawer.bind(this);
+        
         return (
             <Layout>               
             <Header className='header'></Header>
@@ -78,16 +88,22 @@ export class Login extends Component {
                                 ]}>
                                 <Input.Password />
                             </Form.Item>
+                            <Form.Item>
                                 <GoogleLogin
                                     clientId="354596986729-j2kjnq4ttrjh3fsffqi9lbar7ftt6r6o.apps.googleusercontent.com"
                                     buttonText="Sign in with Google"
                                     onSuccess={this.responseGoogle}
                                     onFailure={this.responseGoogle}
                                     cookiePolicy={'single_host_origin'}/>
+                            </Form.Item>
+                            <Form.Item>
+                                <Button type="primary" onClick={() => this.toShowDrawer()}>
+                                    <PlusOutlined /> Nueva cuenta
+                                </Button>
+                            </Form.Item>
                             <Form.Item name="remember" valuePropName="checked">
                                 <Checkbox>Remember me</Checkbox>
                             </Form.Item>
-
                             <Form.Item>
                                 <Link to= {{ pathname: '/' }}>
                                     <Button type="primary" htmlType="submit">
@@ -97,6 +113,7 @@ export class Login extends Component {
                             </Form.Item>
                         </Form>               
                     </Card>
+                    <CommonDrawer text='Crea una cuenta nueva' show={show} setShow={toShowDrawer}/>
                 </Content>
             <Footer className="footer"></Footer>
             </Layout>
