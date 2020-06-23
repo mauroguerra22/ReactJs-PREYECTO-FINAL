@@ -14,7 +14,7 @@ export class Success extends Component {
                     title="Great, we have done all the operations!"
                     extra={[
                         <Link to={{
-                            pathname: '/home'
+                            pathname: '/'
                         }}>
                             <Button type="primary" key="console">
                                 Go Home

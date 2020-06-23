@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import logo from '../assets/img/rollingstore.png';
-import { Layout, Row, Col, Input, message, Menu, Dropdown, Button } from 'antd';
+import { Layout, Row, Col, Input, message, Menu, Dropdown, Button, Avatar } from 'antd';
 import { UserOutlined, ShoppingCartOutlined, HeartOutlined, LoginOutlined } from '@ant-design/icons';
 import { Redirect, Link } from 'react-router-dom'
 import { getInfoCustomer } from '../reducers';
@@ -86,12 +86,13 @@ class commonHeader extends Component {
     }
 
     render() {
-        const { customer } = this.props;
+        const { userGoogle } = this.props;
 
         const menu = (
             <Menu>
                 <Menu.Item key="1" style={{textAlign: 'center', color: 'black', fontSize: 15 }}>
-                    <p>{customer}</p>
+                    <Avatar src={userGoogle.picture}/>
+                    <p>{userGoogle.name}</p>
                     <Button type="link">Ver Perfil</Button>
                 </Menu.Item>
                 <Menu.Item key="2" icon={<ShoppingCartOutlined />}>
@@ -111,7 +112,7 @@ class commonHeader extends Component {
                 <Row>
                     <Col xs={{ span: 5 }} lg={{ span: 3 }}>
                         {this.renderRedirectToMain()}
-                        <Link to={{ pathname: '/home' }}>
+                        <Link to={{ pathname: '/' }}>
                             <img src={logo} className='header-logo' alt='logo' onClick={this.setRedirectToMain} />
                         </Link>                       
                     </Col>
@@ -135,7 +136,7 @@ class commonHeader extends Component {
                     </Col>
                     <Col xs={{ span: 0 }} lg={{ span: 5 }}>
                         <Dropdown.Button className='header-greetings' overlay={menu} placement="bottomCenter" icon={<UserOutlined />}>
-                            Bienvenido {customer}
+                            Bienvenido {userGoogle.name}
                         </Dropdown.Button>
                     </Col>
                 </Row>

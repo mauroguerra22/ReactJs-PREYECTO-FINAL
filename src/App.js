@@ -15,7 +15,7 @@ import {
 } from "react-router-dom";
 import { connect } from "react-redux";
 import { getVisibleProducts } from "./reducers/product";
-import Login from './pages/Login'
+import Login from './pages/Login';
 
 class App extends Component{
   constructor(props){
@@ -23,7 +23,8 @@ class App extends Component{
     this.state = {
       results:[],
       term:'',
-      visible: false
+      isLogin: false,
+      userGoogle:{}
     }
     this.updateTerm = this.updateTerm.bind(this);
     this.updateList = this.updateList.bind(this);
@@ -43,86 +44,102 @@ class App extends Component{
       this.setState({results: []})
   }
 
-  setVisible = () => {
+  setIsLogin = () => {
     this.setState({
-      visible: true
+      isLogin: true
     })
   }
 
+  setUserGoogle = newUserGoogle =>{
+    newUserGoogle !== null ?
+      this.setState({
+        userGoogle: newUserGoogle
+      })
+      :
+      this.setState({
+        userGoogle: {}
+      })
+  }
+
   render(){
-    const { term, results, visible } = this.state;
+    const { term, results, isLogin, userGoogle } = this.state;
     const { products } = this.props;
     const updateTerm = this.updateTerm.bind(this);
     const updateList = this.updateList.bind(this);
-    const setVisible = this.setVisible.bind(this);
+    const setIsLogin = this.setIsLogin.bind(this);
+    const setUserGoogle = this.setUserGoogle.bind(this);
     
-    return ( 
-      <Router>
-      {
-        visible ? 
-        <CommonHeader
+    if(isLogin){
+      return ( 
+          <Router>
+            <CommonHeader
             term={term}
             updateTerm={updateTerm}
             updateList={updateList}
-            products={products}/>
-        : null
-      }
-      <Switch>
-            <Route path="/" exact>
-                <div className="App-container">
-                  <Login visible={visible} setVisible={setVisible}/>
-                </div>     
-            </Route>
-            <Route path="/home">
-                <div className="App-container">
-                  <Main 
-                        products={products}
-                        />      
-                </div>     
-            </Route>
-            <Route path="/results">
-                <div className="App-container">
-                  <Results 
-                          results={results}
-                  />      
-                </div>     
-            </Route>
-            <Route 
-              path="/product/:id"
-              render={props => 
-                <div className="App-container">
-                  <Product {...props} />      
-                </div> 
-              }>                
-            </Route>
-            <Route 
-              path="/cart"
-              render={props =>
-                <div className="App-container">
-                  <Cart {...props} />      
-                </div> 
-              }>                
-            </Route>
-            <Route path="/success">
-                <div className="App-container">
-                  <Success 
-                  />      
-                </div>     
-            </Route>
-            <Route path="/error">
-                <div className="App-container">
-                  <Error 
-                  />      
-                </div>     
-            </Route>
-      </Switch>
-      {
-        visible ? 
-        <CommonFooter/>
-        : null
-      }
-    </Router>
-  );
+            products={products}
+            userGoogle={userGoogle}/>
+          <Switch>
+                <Route path="/" exact>
+                    <div className="App-container">
+                      <Main 
+                            products={products}
+                            />      
+                    </div>     
+                </Route>
+                <Route path="/results">
+                    <div className="App-container">
+                      <Results 
+                              results={results}
+                      />      
+                    </div>     
+                </Route>
+                <Route 
+                  path="/product/:id"
+                  render={props => 
+                    <div className="App-container">
+                      <Product {...props} />      
+                    </div> 
+                  }>                
+                </Route>
+                <Route 
+                  path="/cart"
+                  render={props =>
+                    <div className="App-container">
+                      <Cart {...props} />      
+                    </div> 
+                  }>                
+                </Route>
+                <Route path="/success">
+                    <div className="App-container">
+                      <Success 
+                      />      
+                    </div>     
+                </Route>
+                <Route path="/error">
+                    <div className="App-container">
+                      <Error 
+                      />      
+                    </div>     
+                </Route>
+          </Switch>
+            <CommonFooter/>
+        </Router>
+      );
+  }
+  else{
+    return(
+      <Router>
+        <Switch>
+          <Route path="/" exact>
+              <div className="App-container">
+                <Login isLogin={isLogin} setIsLogin={setIsLogin} setUserGoogle={setUserGoogle}/>
+              </div>     
+          </Route>
+        </Switch>
+      </Router>
+          
+    )
+  }
   }
 }
 
