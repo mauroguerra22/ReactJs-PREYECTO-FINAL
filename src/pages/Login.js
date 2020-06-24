@@ -15,8 +15,16 @@ export class Login extends Component {
         this.state = {
              google:{},
              facebook:{},
-             show: false
+             show: false,
+             user:'',
+             password:'',
+             name:'',
+             email:'',
+             domicilio:'',
+             passworduser:'',
+             disabled:true
         }
+        this.handleChange = this.handleChange.bind(this);
     }
     
     toShowDrawer(){
@@ -51,10 +59,56 @@ export class Login extends Component {
         this.props.setIsLogin();
     }
 
+    validateButtonConfirm = () => {
+        // if(this.state.name === '' || this.state.passworduser === '' || this.state.domicilio === '' || this.state.email === ''){
+        //     this.setState({ disabled: true})    
+        // }else{
+        //     this.setState({ disabled: false})
+        // }
+        return this.state.name === '' || this.state.passworduser === '' || this.state.domicilio === '' || this.state.email === '';
+    }
+
+    validateButton = () => {
+        return this.state.user === '' || this.state.password === ''
+    }
+
+    onWriteUser = e =>{
+        this.setState({ user: e.target.value })
+    }
+
+    onWritePassword = e =>{
+        this.setState({ password: e.target.value })
+    }
+
+    onWriteName = e =>{
+        this.setState({ name: e.target.value })
+    }
+
+    onWritePasswordUser = e =>{
+        this.setState({ passworduser: e.target.value })
+    }
+
+    onWriteDomicilio = e =>{
+        this.setState({ domicilio: e.target.value })
+    }
+
+    onWriteEmail = e =>{
+        this.setState({ email: e.target.value })
+    }
+
+    handleChange = e => {
+        const { name, value } = e.target;
+        this.setState({
+          [name]: value
+        });
+        this.validateButtonConfirm();
+    }
+
     render() {
-        const { show } = this.state
+        const { show, user, password, name, email, domicilio, passworduser } = this.state
         const toShowDrawer = this.toShowDrawer.bind(this);
-        
+        const validateButtonConfirm = this.validateButtonConfirm.bind(this);
+
         return (
             <Layout>               
             <Header className='header'></Header>
@@ -75,7 +129,7 @@ export class Login extends Component {
                                     message: 'Please input your username!',
                                 },
                                 ]}>
-                                <Input />
+                                <Input value={user} onChange={this.onWriteUser} allowClear/>
                             </Form.Item>
                             <Form.Item
                                 label="Password"
@@ -86,7 +140,7 @@ export class Login extends Component {
                                     message: 'Please input your password!',
                                 },
                                 ]}>
-                                <Input.Password />
+                                <Input.Password value={password} onChange={this.onWritePassword} allowClear/>
                             </Form.Item>
                             <Form.Item>
                                 <GoogleLogin
@@ -106,14 +160,27 @@ export class Login extends Component {
                             </Form.Item>
                             <Form.Item>
                                 <Link to= {{ pathname: '/' }}>
-                                    <Button type="primary" htmlType="submit">
+                                    <Button type="primary" htmlType="submit" disabled={this.validateButton()}>
                                         Iniciar
                                     </Button>
                                 </Link>
                             </Form.Item>
                         </Form>               
                     </Card>
-                    <CommonDrawer text='Crea una cuenta nueva' show={show} setShow={toShowDrawer}/>
+                    <CommonDrawer 
+                                text='Crea una cuenta nueva' 
+                                show={show} 
+                                setShow={toShowDrawer}
+                                name={name}
+                                domicilio={domicilio}
+                                email={email}
+                                passworduser={passworduser}
+                                validateButtonConfirm={validateButtonConfirm}
+                                handleChange={this.handleChange}
+                                onWriteName={this.onWriteName}
+                                onWritePasswordUser={this.onWritePasswordUser}
+                                onWriteDomicilio={this.onWriteDomicilio}
+                                onWriteEmail={this.onWriteEmail}/>
                 </Content>
             <Footer className="footer"></Footer>
             </Layout>

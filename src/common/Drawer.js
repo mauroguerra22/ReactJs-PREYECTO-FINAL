@@ -30,7 +30,7 @@ export class commonDrawer extends Component {
   };
 
   render() {
-      const { text, show } = this.props;
+      const { text, show, name, email, domicilio, passworduser } = this.props;
     return (
       <>    
         <Drawer
@@ -49,7 +49,7 @@ export class commonDrawer extends Component {
               <Button onClick={this.onClose} style={{ marginRight: 8 }}>
                 Cancel
               </Button>
-              <Button onClick={this.onClose} type="primary">
+              <Button onClick={this.onClose} type="primary" disabled={this.props.validateButtonConfirm()}>
                 Confirmar
               </Button>
             </div>
@@ -60,19 +60,19 @@ export class commonDrawer extends Component {
               <Col span={12}>
                 <Form.Item
                   name="name"
-                  label="Name"
+                  label="User Name"
                   rules={[{ required: true, message: 'Please enter user name' }]}
                 >
-                  <Input placeholder="Please enter user name" />
+                  <Input value={name} placeholder="Please enter user name" onChange={this.props.onWriteName} allowClear/>
                 </Form.Item>
               </Col>
               <Col span={12}>
                 <Form.Item
-                  name="password"
+                  name="passworduser"
                   label="Password"
                   rules={[{ required: true, message: 'Please enter password' }]}
                 >
-                   <Input.Password placeholder="Please enter user password" style={{ width: '100%' }}/>
+                   <Input.Password value={passworduser} placeholder="Please enter user password" style={{ width: '100%' }} onChange={this.props.onWritePasswordUser} allowClear/>
                 </Form.Item>
               </Col>
             </Row>
@@ -83,7 +83,7 @@ export class commonDrawer extends Component {
                   label="Domicilio"
                   rules={[{ required: true, message: 'Please enter user home' }]}
                 >
-                  <Input placeholder="Please enter user home" />
+                  <Input value={domicilio} placeholder="Please enter user home" onChange={this.props.onWriteDomicilio} allowClear/>
                 </Form.Item>
               </Col>
               <Col span={12}>
@@ -92,7 +92,7 @@ export class commonDrawer extends Component {
                   label="E-mail"
                   rules={[{ required: true, message: 'Please choose the E-mail' }]}
                 >
-                  <Input placeholder="Please enter user E-mail" />
+                  <Input value={email} placeholder="Please enter user E-mail" onChange={this.props.onWriteEmail} allowClear/>
                 </Form.Item>
               </Col>
             </Row>

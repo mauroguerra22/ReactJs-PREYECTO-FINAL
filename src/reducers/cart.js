@@ -11,15 +11,16 @@ const Purchases = firebaseApp.database().ref().child('purchases')
 
 const Favorites = firebaseApp.database().ref().child('favorites')
 
-const createPurchase = state => {
-  Purchases.push(state)
-}
 
 const createFavorite = favorite => {
   Favorites.child('0').set(favorite);
-
- // Favorites.child('productfavorite').set(favorite);
+  
+  // Favorites.child('productfavorite').set(favorite);
   //Favorites.push(favorite);
+}
+
+const createPurchase = state => {
+  Purchases.push(state)
 }
 
 const initialState = {

@@ -28,6 +28,10 @@ export class CartDetails extends Component {
         this.setState({ show: !this.state.show })    
     }
 
+    validateButton = () => {
+        return this.state.creditCard === '' || this.state.shippingAddress === ''
+    }
+
     render() {
         const radioStyle = { display: 'block' }
         const { shippingAddress, creditCard, show } = this.state
@@ -60,16 +64,12 @@ export class CartDetails extends Component {
                                         <Button type="link" onClick={() => this.toShowModal()}>Agregar tarjeta</Button>
                                     </Space>
                         </Group>
-                    <p>Total: ${ total }</p>
-                        {
-                            shippingAddress !== '' && creditCard !== '' ?
-                            <Link to={{
-                                pathname: '/success'
-                            }}> 
-                            <Button className="buttonDetails" onClick={() => checkoutCart(shippingAddress, creditCard)}>Confirmar Compra</Button>  
-                            </Link> : null
-                        }
-                        
+                        <p>Total: ${ total }</p>
+                        <Link to={{
+                            pathname: '/success'
+                        }}> 
+                            <Button className="buttonDetails" onClick={() => checkoutCart(shippingAddress, creditCard)} disabled={this.validateButton()}>Confirmar Compra</Button>  
+                        </Link>                   
                         {
                             show ? <CommonModal text='Ingrese su tarjeta' showInput={showInput} setShow={toShowModal}/> : null  
                         }     
