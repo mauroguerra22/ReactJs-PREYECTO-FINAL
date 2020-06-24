@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Row, Col, Descriptions, Button, Tag } from'antd';
+import { Row, Col, Descriptions, Button, Tag, notification } from'antd';
 import { Redirect, Link } from 'react-router-dom'
 import { ShoppingCartOutlined, HeartOutlined } from '@ant-design/icons';
 import { GlassMagnifier } from "react-image-magnifiers";
@@ -18,12 +18,25 @@ export class ProductInfo extends Component {
         return <Redirect to="/error"/>
     }
 
+    showMessage = product =>{
+        this.openNotificationWithIcon('success', product);
+        //message.success('Producto agregado a favoritos');   
+        this.props.checkoutFavorite(product);
+    }
+
+    openNotificationWithIcon = (type, product) => {
+        notification[type]({
+          message: 'Producto agregado a favoritos',
+          description: `Product: ${product.name}, Brand: ${product.brand}`,
+        });
+    };
+
     render() {      
          if(JSON.stringify(this.props.product) === '{}'){           
              return this.renderRedirectToError();
          }else{
             const { name, brand, price, id, description } = this.props.product;
-            const { product, onAddToCartClicked, checkoutFavorite } = this.props;   
+            const { product, onAddToCartClicked } = this.props;   
         return (
             <Fragment>
                 <Row gutter={[48, 8]} className="descriptions-product">                       
@@ -32,11 +45,10 @@ export class ProductInfo extends Component {
                             </Col>
 
                             <Col xs={{span:24}} lg={{span:10}}>
-                                <HeartOutlined style={{marginLeft: '100%', marginTop: '5%', float: 'left', color: '#0050b3' }} onClick={() => checkoutFavorite(product)}/>
+                                <HeartOutlined style={{marginLeft: '100%', marginTop: '5%', float: 'left', color: '#0050b3' }} onClick={() => this.showMessage(product)}/>
                                 <Descriptions className="descriptions-product-name" title={name}>
                                     <Descriptions.Item label="Marca">{brand}</Descriptions.Item>
                                     <Descriptions.Item label="Precio">{`$${price}`}</Descriptions.Item>
-                                    {/* <Descriptions.Item><HeartOutlined twoToneColor="#eb2f96" onClick={() => console.log("fav")}/></Descriptions.Item> */}
                                 </Descriptions>
                                 <Descriptions  className="descriptions-product-descriptions" title="Descripcion">
                                     <p>{description}</p>
