@@ -2,14 +2,24 @@ import {
   ADD_TO_CART,
   CHECKOUT_REQUEST,
   CHECKOUT_FAILURE,
-  CHECKOUT_CART
+  CHECKOUT_CART,
+  ADD_TO_FAVORITE
 } from '../constants/ActionTypes'
 import { firebaseApp } from '../firebase'
 
 const Purchases = firebaseApp.database().ref().child('purchases')
 
+const Favorites = firebaseApp.database().ref().child('favorites')
+
 const createPurchase = state => {
-Purchases.push(state)
+  Purchases.push(state)
+}
+
+const createFavorite = favorite => {
+  Favorites.child('0').set(favorite);
+
+ // Favorites.child('productfavorite').set(favorite);
+  //Favorites.push(favorite);
 }
 
 const initialState = {
@@ -81,6 +91,16 @@ case CHECKOUT_CART:
   }
   createPurchase(newState)
   return initialState
+  case ADD_TO_FAVORITE:
+    const newFavorite ={
+      id:action.payload.newProduct.id,
+      name:action.payload.newProduct.name,
+      brand:action.payload.newProduct.brand,
+      price:action.payload.newProduct.price,
+      description:action.payload.newProduct.description
+  }
+  createFavorite(newFavorite);
+  return initialState;
 default:
   return {
     addedIds: addedIds(state.addedIds, action),

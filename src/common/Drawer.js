@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import { Drawer, Form, Button, Col, Row, Input, Select, DatePicker } from 'antd';
-
-const { Option } = Select;
+import { Drawer, Form, Button, Col, Row, Input } from 'antd';
 
 export class commonDrawer extends Component {
     constructor(props) {

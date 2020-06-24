@@ -1,9 +1,11 @@
 import React, { Component, Fragment } from 'react'
 import { Row, Col, Descriptions, Button, Tag } from'antd';
 import { Redirect, Link } from 'react-router-dom'
-import { ShoppingCartOutlined } from '@ant-design/icons';
+import { ShoppingCartOutlined, HeartOutlined } from '@ant-design/icons';
 import { GlassMagnifier } from "react-image-magnifiers";
 import PropTypes from 'prop-types';
+import { checkoutFavorite } from '../actions'
+import { connect } from 'react-redux'
 
 export class ProductInfo extends Component {
 
@@ -21,7 +23,7 @@ export class ProductInfo extends Component {
              return this.renderRedirectToError();
          }else{
             const { name, brand, price, id, description, shippingTime } = this.props.product;
-            const { product, onAddToCartClicked } = this.props;   
+            const { product, onAddToCartClicked, checkoutFavorite } = this.props;   
         return (
             <Fragment>
                 <Row gutter={[48, 8]} className="descriptions-product">                       
@@ -30,13 +32,14 @@ export class ProductInfo extends Component {
                             </Col>
 
                             <Col xs={{span:24}} lg={{span:10}}>
+                                <HeartOutlined style={{marginLeft: '100%', marginTop: '5%', float: 'left', color: '#0050b3' }} onClick={() => checkoutFavorite(product)}/>
                                 <Descriptions className="descriptions-product-name" title={name}>
                                     <Descriptions.Item label="Marca">{brand}</Descriptions.Item>
                                     <Descriptions.Item label="Precio">{`$${price}`}</Descriptions.Item>
+                                    {/* <Descriptions.Item><HeartOutlined twoToneColor="#eb2f96" onClick={() => console.log("fav")}/></Descriptions.Item> */}
                                 </Descriptions>
                                 <Descriptions  className="descriptions-product-descriptions" title="Descripcion">
                                     <p>{description}</p>
-                                    <p>{shippingTime}</p>
                                 </Descriptions>
                                 <Tag className="descriptions-product-tag" color="green">Hay stock disponible</Tag>
                                 <br/>
@@ -67,5 +70,12 @@ ProductInfo.propTypes = {
     }),
     onAddToCartClicked: PropTypes.func.isRequired
   }
+  
+  const mapStateToProps = state => ({
+      
+  })
 
-export default ProductInfo
+  export default connect(
+      mapStateToProps,
+      { checkoutFavorite }
+    )(ProductInfo)

@@ -99,7 +99,9 @@ class commonHeader extends Component {
                     Mis Compras
                 </Menu.Item>
                 <Menu.Item key="3" icon={<HeartOutlined />}>
-                    Mis Favoritos
+                    <Link to={{ pathname: '/favorite' }}>
+                        Mis Favoritos
+                    </Link>      
                 </Menu.Item>
                 <Menu.Item key="4" icon={<LoginOutlined />}>
                     Cerrar sesión

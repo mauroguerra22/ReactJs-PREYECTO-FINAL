@@ -4,6 +4,8 @@ import * as types from '../constants/ActionTypes'
 
 const Products = firebaseApp.database().ref().child('products');
 
+const Favorites = firebaseApp.database().ref().child('favorites');
+
 const fetchProducts = products => {
   return {
     type: types.FETCH_PRODUCTS,
@@ -11,9 +13,23 @@ const fetchProducts = products => {
   }
 }
 
+const fetchProductsFavorites = favorites => {
+  return {
+    type: types.FETCH_PRODUCTS_FAVORITE,
+    favorites
+  }
+}
+
 export const getFetchedProducts = () => dispatch => {
   Products.on('value', snapshot => {
     dispatch(fetchProducts(snapshot.val()))
+  })
+}
+
+
+export const getFetchedProductsFavorites = () => dispatch => {
+  Favorites.on('value', snapshot => {
+    dispatch(fetchProductsFavorites(snapshot.val()))
   })
 }
 
@@ -45,6 +61,15 @@ export const checkoutCart = (newShippingAddress, newCreditCard) => dispatch =>  
     payload: {
       newShippingAddress,
       newCreditCard
+    }
+  })
+}
+
+export const checkoutFavorite = newProduct => dispatch =>{
+  dispatch({
+    type: types.ADD_TO_FAVORITE,
+    payload:{
+      newProduct
     }
   })
 }

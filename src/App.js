@@ -5,6 +5,7 @@ import Results from './pages/Results';
 import Product from './pages/Product';
 import Cart from './pages//Cart';
 import Success from './pages/Success';
+import Favorite from './pages/Favorite';
 import CommonFooter from './common/Footer';
 import CommonHeader from './common/Header';
 import Error from './common/Error';
@@ -112,6 +113,12 @@ class App extends Component{
                 <Route path="/success">
                     <div className="App-container">
                       <Success 
+                      />      
+                    </div>     
+                </Route>
+                <Route path="/favorite">
+                    <div className="App-container">
+                      <Favorite
                       />      
                     </div>     
                 </Route>
