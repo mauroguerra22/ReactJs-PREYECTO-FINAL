@@ -7,7 +7,7 @@ import  { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import  reducer from './reducers';
 import thunk from 'redux-thunk';
-import { getFetchedProducts, getFetchedProductsFavorites } from "./actions";
+import { getFetchedProducts } from "./actions";
 import { createLogger } from "redux-logger";
 import 'antd/dist/antd.css';
 import {I18nextProvider} from 'react-i18next';
@@ -31,7 +31,6 @@ const store = createStore(
 )
 
 store.dispatch(getFetchedProducts());
-//store.dispatch(getFetchedProductsFavorites());
 
 /*===================================*/
 

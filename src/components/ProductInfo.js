@@ -22,7 +22,7 @@ export class ProductInfo extends Component {
          if(JSON.stringify(this.props.product) === '{}'){           
              return this.renderRedirectToError();
          }else{
-            const { name, brand, price, id, description, shippingTime } = this.props.product;
+            const { name, brand, price, id, description } = this.props.product;
             const { product, onAddToCartClicked, checkoutFavorite } = this.props;   
         return (
             <Fragment>
