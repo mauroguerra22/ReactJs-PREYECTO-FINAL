@@ -56,6 +56,7 @@
 .header{
   color: var(--text) !important;
   background-color: var(--details-app) !important;
+  height: 100% !important;
 }
 .header-logo{
   height: 60px;
@@ -65,12 +66,14 @@
   display: flex;
   justify-content: center;
   margin-top: 15px;
+  width: 90%;
 }
 .header-greetings{
   display: flex !important;
   justify-content: center;
   font-size: 16px;
-  margin-top: 5.5%;
+  margin-top: 15px;
+  margin-bottom: 10px;
 }
 .clear-icon {
   color: var(--secondary);
@@ -130,6 +133,7 @@
   width: 90%;
   margin-left: 5% !important;
   background: #fafafa;
+  margin-top: 10px;
 }
 
 .img-product-info{
@@ -165,6 +169,9 @@
   margin-bottom: 5%;
 }
 
+.descriptions-product-info{
+  margin-left: 38px;
+}
 /*==========================================================*/
 
 .cartDestails{

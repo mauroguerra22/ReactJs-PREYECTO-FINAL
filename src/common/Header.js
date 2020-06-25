@@ -5,6 +5,7 @@ import { UserOutlined, ShoppingCartOutlined, HeartOutlined, LoginOutlined } from
 import { Redirect, Link } from 'react-router-dom'
 import { getInfoCustomer } from '../reducers';
 import { connect } from "react-redux";
+import { firebaseApp } from '../firebase';
 
 const { Header } = Layout;
 const { Search } = Input;
@@ -32,7 +33,7 @@ class commonHeader extends Component {
 
     renderRedirectToMain = () => {
         if (this.state.redirectToMain) {
-           return <Redirect to='/home' />
+           return <Redirect to='/' />
         }
     }
 
@@ -91,8 +92,8 @@ class commonHeader extends Component {
         const menu = (
             <Menu>
                 <Menu.Item key="1" style={{textAlign: 'center', color: 'black', fontSize: 15 }}>
-                    <Avatar src={userGoogle.picture}/>
-                    <p>{userGoogle.name}</p>
+                    <Avatar src={firebaseApp.auth().currentUser.photoURL}/>
+                    <p>{firebaseApp.auth().currentUser.displayName}</p>
                     <Button type="link">Ver Perfil</Button>
                 </Menu.Item>
                 <Menu.Item key="2" icon={<ShoppingCartOutlined />}>
@@ -103,7 +104,7 @@ class commonHeader extends Component {
                         Mis Favoritos
                     </Link>      
                 </Menu.Item>
-                <Menu.Item key="4" icon={<LoginOutlined />}>
+                <Menu.Item key="4" onClick={() => firebaseApp.auth().signOut()} icon={<LoginOutlined />}>
                     Cerrar sesión
                 </Menu.Item>
             </Menu>
@@ -136,9 +137,9 @@ class commonHeader extends Component {
                             }
                         </div>
                     </Col>
-                    <Col xs={{ span: 0 }} lg={{ span: 5 }}>
+                    <Col xs={{ span: 24 }} lg={{ span: 5 }}>
                         <Dropdown.Button className='header-greetings' overlay={menu} placement="bottomCenter" icon={<UserOutlined />}>
-                            Bienvenido {userGoogle.name}
+                            Bienvenido {firebaseApp.auth().currentUser.displayName}
                         </Dropdown.Button>
                     </Col>
                 </Row>

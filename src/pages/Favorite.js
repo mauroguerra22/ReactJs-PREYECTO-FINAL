@@ -16,7 +16,6 @@ class Favorite extends Component {
 
   render() {
     const { favorites } = this.props;
-    console.log(favorites);
     return(
       <div>
         <h3 style={{textAlign: 'center'}}>Lista de Favoritos</h3>

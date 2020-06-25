@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { Form, Input, Button, Checkbox, Card, Layout } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-import { GoogleLogin } from 'react-google-login';
 import CommonDrawer from '../common/Drawer';
+import { firebaseApp } from '../firebase';
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
 
 const { Content, Header, Footer } = Layout;
 
@@ -27,26 +28,24 @@ export class Login extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
     
+    uiConfig = {
+        signInFlow: "popup",
+        signInOptions: [
+          firebaseApp.auth.GoogleAuthProvider.PROVIDER_ID,
+          firebaseApp.auth.FacebookAuthProvider.PROVIDER_ID,
+          firebaseApp.auth.EmailAuthProvider.PROVIDER_ID
+        ],
+        callbacks: {
+          signInSuccess: () => false
+        }
+    }
+
     toShowDrawer(){
         this.setState({ show: !this.state.show })    
     }
 
     componentClicked = () => console.log("clicked");
-
-    responseFacebook = (response) => {
-        this.setState({
-            facebook:{
-                isLoggedIn: true,
-                userID: response.userID,
-                name: response.name,
-                email: response.email,
-                picture: response.picture.data.url 
-            }
-        })
-        console.log(response);
-        console.log("ESTO ES TU OBJETO FACEBOOK: "+this.state.facebook.name);
-    }
-    
+   
     responseGoogle = (response) => {
         this.setState({
             google:{
@@ -56,15 +55,9 @@ export class Login extends Component {
             }
         })
         this.props.setUserGoogle(this.state.google);
-        this.props.setIsLogin();
     }
 
     validateButtonConfirm = () => {
-        // if(this.state.name === '' || this.state.passworduser === '' || this.state.domicilio === '' || this.state.email === ''){
-        //     this.setState({ disabled: true})    
-        // }else{
-        //     this.setState({ disabled: false})
-        // }
         return this.state.name === '' || this.state.passworduser === '' || this.state.domicilio === '' || this.state.email === '';
     }
 
@@ -143,12 +136,15 @@ export class Login extends Component {
                                 <Input.Password value={password} onChange={this.onWritePassword} allowClear/>
                             </Form.Item>
                             <Form.Item>
-                                <GoogleLogin
+                                {/* <GoogleLogin
                                     clientId="354596986729-j2kjnq4ttrjh3fsffqi9lbar7ftt6r6o.apps.googleusercontent.com"
                                     buttonText="Sign in with Google"
                                     onSuccess={this.responseGoogle}
                                     onFailure={this.responseGoogle}
-                                    cookiePolicy={'single_host_origin'}/>
+                                    cookiePolicy={'single_host_origin'}/> */}
+                                 <StyledFirebaseAuth
+                                    uiConfig={this.uiConfig}
+                                    firebaseAuth={firebaseApp.auth()}/>   
                             </Form.Item>
                             <Form.Item>
                                 <Button type="primary" onClick={() => this.toShowDrawer()}>

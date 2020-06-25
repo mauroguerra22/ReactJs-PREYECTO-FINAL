@@ -11,12 +11,20 @@ const Purchases = firebaseApp.database().ref().child('purchases')
 
 const Favorites = firebaseApp.database().ref().child('favorites')
 
+const DB = firebaseApp.database().ref()
+
 
 const createFavorite = favorite => {
-  Favorites.child('0').set(favorite);
+  let quantity = 0
   
-  // Favorites.child('productfavorite').set(favorite);
-  //Favorites.push(favorite);
+  Favorites.once('value', snap => {
+    snap.forEach(quantity++)
+  })
+
+  quantity > 0 ? 
+    Favorites.child(quantity).push(favorite)
+  :
+    Favorites.child('0').set(favorite)
 }
 
 const createPurchase = state => {
@@ -99,9 +107,9 @@ case CHECKOUT_CART:
       brand:action.payload.newProduct.brand,
       price:action.payload.newProduct.price,
       description:action.payload.newProduct.description
-  }
-  createFavorite(newFavorite);
-  return initialState;
+    }
+    createFavorite(newFavorite);
+    return initialState;
 default:
   return {
     addedIds: addedIds(state.addedIds, action),

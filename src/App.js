@@ -17,6 +17,7 @@ import {
 import { connect } from "react-redux";
 import { getVisibleProducts } from "./reducers/product";
 import Login from './pages/Login';
+import { firebaseApp } from './firebase';
 
 class App extends Component{
   constructor(props){
@@ -29,6 +30,13 @@ class App extends Component{
     }
     this.updateTerm = this.updateTerm.bind(this);
     this.updateList = this.updateList.bind(this);
+  }
+
+  componentDidMount = () => {
+    firebaseApp.auth().onAuthStateChanged(user => {
+      this.setState({ isLogin: !!user })
+      console.log("user", user)
+    })
   }
 
   updateTerm(term){
@@ -45,30 +53,12 @@ class App extends Component{
       this.setState({results: []})
   }
 
-  setIsLogin = () => {
-    this.setState({
-      isLogin: true
-    })
-  }
-
-  setUserGoogle = newUserGoogle =>{
-    newUserGoogle !== null ?
-      this.setState({
-        userGoogle: newUserGoogle
-      })
-      :
-      this.setState({
-        userGoogle: {}
-      })
-  }
 
   render(){
     const { term, results, isLogin, userGoogle } = this.state;
     const { products } = this.props;
     const updateTerm = this.updateTerm.bind(this);
     const updateList = this.updateList.bind(this);
-    const setIsLogin = this.setIsLogin.bind(this);
-    const setUserGoogle = this.setUserGoogle.bind(this);
     
     if(isLogin){
       return ( 
@@ -139,7 +129,7 @@ class App extends Component{
         <Switch>
           <Route path="/" exact>
               <div className="App-container">
-                <Login isLogin={isLogin} setIsLogin={setIsLogin} setUserGoogle={setUserGoogle}/>
+                <Login/>
               </div>     
           </Route>
         </Switch>

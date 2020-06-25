@@ -13,7 +13,7 @@ export class Main extends Component {
                 <CommonCarousel/>
                 <Content className="content">
                     <p>Relacionado con tus visitas</p>
-                    <Row>
+                    <Row style={{textAlign: 'center', marginLeft: 45}}>
                     {products.map(prod =>(
                         <Col key={prod.id} xs={{span:24}} lg={{span:6}}>
                             <ProductCard product={prod}/>

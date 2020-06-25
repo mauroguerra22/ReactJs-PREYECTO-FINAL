@@ -1,13 +1,18 @@
 import React, { Component, Fragment } from 'react'
-import { Row, Col, Descriptions, Button, Tag, notification } from'antd';
+import { Row, Col, Descriptions, Button, Tag, notification, Rate } from'antd';
 import { Redirect, Link } from 'react-router-dom'
-import { ShoppingCartOutlined, HeartOutlined } from '@ant-design/icons';
+import { ShoppingCartOutlined, HeartOutlined, CreditCardOutlined } from '@ant-design/icons';
 import { GlassMagnifier } from "react-image-magnifiers";
 import PropTypes from 'prop-types';
 import { checkoutFavorite } from '../actions'
 import { connect } from 'react-redux'
+import tarjetas from '../assets/img/tarjetas.jpg';
 
 export class ProductInfo extends Component {
+
+    state = {
+        value: 3,
+    };
 
     getPhoto(id){
         let photo =`https://firebasestorage.googleapis.com/v0/b/rolling-store-cm.appspot.com/o/products%2F${id}.jpg?alt=media`;
@@ -19,8 +24,7 @@ export class ProductInfo extends Component {
     }
 
     showMessage = product =>{
-        this.openNotificationWithIcon('success', product);
-        //message.success('Producto agregado a favoritos');   
+        this.openNotificationWithIcon('success', product); 
         this.props.checkoutFavorite(product);
     }
 
@@ -31,29 +35,42 @@ export class ProductInfo extends Component {
         });
     };
 
+    handleChange = value => {
+        this.setState({ value });
+    };
+
     render() {      
          if(JSON.stringify(this.props.product) === '{}'){           
              return this.renderRedirectToError();
          }else{
             const { name, brand, price, id, description } = this.props.product;
-            const { product, onAddToCartClicked } = this.props;   
+            const { product, onAddToCartClicked } = this.props; 
+            const { value } = this.state;  
         return (
             <Fragment>
-                <Row gutter={[48, 8]} className="descriptions-product">                       
+                <Row className="descriptions-product">                       
                             <Col xs={{span:24}} lg={{span:13}} className="col-img-product-info">            
                                 <GlassMagnifier className="img-product-info" imageSrc={this.getPhoto(id)}/>
                             </Col>
 
-                            <Col xs={{span:24}} lg={{span:10}}>
-                                <HeartOutlined style={{marginLeft: '100%', marginTop: '5%', float: 'left', color: '#0050b3' }} onClick={() => this.showMessage(product)}/>
-                                <Descriptions className="descriptions-product-name" title={name}>
-                                    <Descriptions.Item label="Marca">{brand}</Descriptions.Item>
-                                    <Descriptions.Item label="Precio">{`$${price}`}</Descriptions.Item>
+                            <Col xs={{span:24}} lg={{span:10}} className="descriptions-product-info">
+                                <HeartOutlined style={{marginLeft: '85%', marginTop: '5%', float: 'left', color: '#0050b3' }} onClick={() => this.showMessage(product)}/>
+                                <Descriptions title={name}>
+                                    <Descriptions.Item>
+                                        <Rate onChange={this.handleChange} value={value}/>
+                                        <p style={{fontSize: 44, marginBottom: 0}}>{`$${price}`}</p>
+                                        <Tag className="descriptions-product-tag" color="green">Hay stock disponible</Tag>
+                                        <p><CreditCardOutlined />Pagá en hasta 12 cuotas</p>
+                                        {/* <img alt="tarjetas" src={tarjetas}/> */}
+                                    </Descriptions.Item>                                  
+                                    {/* <Descriptions.Item></Descriptions.Item>
+                                    <Descriptions.Item label="Marca">{brand}</Descriptions.Item> */}
                                 </Descriptions>
-                                <Descriptions  className="descriptions-product-descriptions" title="Descripcion">
+                                <Descriptions>
+                                </Descriptions>
+                                <Descriptions title="Descripcion">
                                     <p>{description}</p>
                                 </Descriptions>
-                                <Tag className="descriptions-product-tag" color="green">Hay stock disponible</Tag>
                                 <br/>
                                     <Link
                                         to={{
