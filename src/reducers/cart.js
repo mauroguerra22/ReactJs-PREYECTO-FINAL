@@ -11,8 +11,6 @@ const Purchases = firebaseApp.database().ref().child('purchases')
 
 const Favorites = firebaseApp.database().ref().child('favorites')
 
-const DB = firebaseApp.database().ref()
-
 
 const createFavorite = favorite => {
   let quantity = 0

@@ -87,7 +87,6 @@ class commonHeader extends Component {
     }
 
     render() {
-        const { userGoogle } = this.props;
 
         const menu = (
             <Menu>

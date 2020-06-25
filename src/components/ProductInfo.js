@@ -6,7 +6,6 @@ import { GlassMagnifier } from "react-image-magnifiers";
 import PropTypes from 'prop-types';
 import { checkoutFavorite } from '../actions'
 import { connect } from 'react-redux'
-import tarjetas from '../assets/img/tarjetas.jpg';
 
 export class ProductInfo extends Component {
 
@@ -43,7 +42,7 @@ export class ProductInfo extends Component {
          if(JSON.stringify(this.props.product) === '{}'){           
              return this.renderRedirectToError();
          }else{
-            const { name, brand, price, id, description } = this.props.product;
+            const { name, price, id, description } = this.props.product;
             const { product, onAddToCartClicked } = this.props; 
             const { value } = this.state;  
         return (
