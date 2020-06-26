@@ -66,7 +66,6 @@ export class ProductInfo extends Component {
                             </Col>
 
                             <Col xs={{span:24}} lg={{span:10}} className="descriptions-product-info">
-                                        <HeartOutlined className="icon-product-info" onClick={() => this.showMessage(product)}/>
                                 <Descriptions title={name}>
                                     <Descriptions.Item>
                                         <Rate onChange={this.handleChange} value={value}/>
@@ -77,6 +76,7 @@ export class ProductInfo extends Component {
                                         <img alt="tarjetas2" src={tarjeta2}/>
                                         <img alt="tarjetas3" src={tarjeta3}/>
                                         <p style={{marginTop: 10}}>Llega a tu casa en <strong>{shippingTime}</strong></p>
+                                        <HeartOutlined className="icon-product-info" onClick={() => this.showMessage(product)}/>
                                     </Descriptions.Item>                                  
                                 </Descriptions>
                                 <Descriptions>

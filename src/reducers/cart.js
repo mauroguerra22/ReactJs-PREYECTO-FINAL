@@ -94,15 +94,15 @@ switch (action.type) {
 case CHECKOUT_FAILURE:
   return action.cart
 case CHECKOUT_CART:
-  const newState = {
-    addedIds: state.addedIds,
-    quantityById: state.quantityById,
-    customer: state.customer,
-    creditCard: action.payload.newCreditCard,
-    shippingAddress: action.payload.newShippingAddress
-  }
-  createPurchase(newState)
-  return initialState
+    const newState = {
+      addedIds: state.addedIds,
+      quantityById: state.quantityById,
+      customer: state.customer,
+      creditCard: action.payload.newCreditCard,
+      shippingAddress: action.payload.newShippingAddress
+    }
+    createPurchase(newState)
+    return initialState
   case ADD_TO_FAVORITE:
     const newFavorite ={
       id:action.payload.newProduct.id,

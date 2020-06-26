@@ -171,6 +171,7 @@
 
 .descriptions-product-info{
   margin-left: 38px;
+  margin-top: 30px;
 }
 
 .descriptions-product-info-descriptions{
@@ -220,9 +221,7 @@
 }
 
 .icon-product-info{
-  margin-left: 80%;
-  margin-top: 5%;
-  float: left;
+  font-size: 190%;
   color: #0050b3;
 }
 
