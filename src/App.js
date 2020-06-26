@@ -6,6 +6,7 @@ import Product from './pages/Product';
 import Cart from './pages//Cart';
 import Success from './pages/Success';
 import Favorite from './pages/Favorite';
+import Profile from './pages/Profile';
 import CommonFooter from './common/Footer';
 import CommonHeader from './common/Header';
 import Error from './common/Error';
@@ -108,6 +109,12 @@ class App extends Component{
                 <Route path="/favorite">
                     <div className="App-container">
                       <Favorite
+                      />      
+                    </div>     
+                </Route>
+                <Route path="/profile">
+                    <div className="App-container">
+                      <Profile 
                       />      
                     </div>     
                 </Route>

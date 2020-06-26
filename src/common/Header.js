@@ -93,7 +93,9 @@ class commonHeader extends Component {
                 <Menu.Item key="1" style={{textAlign: 'center', color: 'black', fontSize: 15 }}>
                     <Avatar src={firebaseApp.auth().currentUser.photoURL}/>
                     <p>{firebaseApp.auth().currentUser.displayName}</p>
-                    <Button type="link">Ver Perfil</Button>
+                    <Link to={{ pathname: '/profile' }}>
+                        <Button type="link">Ver Perfil</Button>  
+                    </Link>
                 </Menu.Item>
                 <Menu.Item key="2" icon={<ShoppingCartOutlined />}>                
                         Mis Compras                  
