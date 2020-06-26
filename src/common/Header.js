@@ -96,7 +96,9 @@ class commonHeader extends Component {
                     <Button type="link">Ver Perfil</Button>
                 </Menu.Item>
                 <Menu.Item key="2" icon={<ShoppingCartOutlined />}>
-                    Mis Compras
+                    <Link to={{ pathname: '/purchases' }}>
+                        Mis Compras
+                    </Link>                   
                 </Menu.Item>
                 <Menu.Item key="3" icon={<HeartOutlined />}>
                     <Link to={{ pathname: '/favorite' }}>

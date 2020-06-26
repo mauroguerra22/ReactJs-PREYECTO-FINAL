@@ -6,6 +6,8 @@ const Products = firebaseApp.database().ref().child('products');
 
 const Favorites = firebaseApp.database().ref().child('favorites');
 
+const Purchases = firebaseApp.database().ref().child('purchases');
+
 const fetchProducts = products => {
   return {
     type: types.FETCH_PRODUCTS,
@@ -20,6 +22,13 @@ const fetchProductsFavorites = favorites => {
   }
 }
 
+const fetchPurchases = purchases => {
+  return {
+    type: types.FETCH_PURCHASES,
+    purchases
+  }
+}
+
 export const getFetchedProducts = () => dispatch => {
   Products.on('value', snapshot => {
     dispatch(fetchProducts(snapshot.val()))
@@ -30,6 +39,12 @@ export const getFetchedProducts = () => dispatch => {
 export const getFetchedProductsFavorites = () => dispatch => {
   Favorites.on('value', snapshot => {
     dispatch(fetchProductsFavorites(snapshot.val()))
+  })
+}
+
+export const getFetchedPurchases = () => dispatch => {
+  Purchases.on('value', snapshot => {
+    dispatch(fetchPurchases(snapshot.val()))
   })
 }
 
@@ -85,7 +100,5 @@ export const checkout = products => (dispatch, getState) => {
       type: types.CHECKOUT_SUCCESS,
       cart
     })
-    // Replace the line above with line below to rollback on failure:
-    // dispatch({ type: types.CHECKOUT_FAILURE, cart })
   })
 }

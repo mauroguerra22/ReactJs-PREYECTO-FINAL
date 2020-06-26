@@ -2,17 +2,20 @@ import { combineReducers } from 'redux' //uso esto cuando uso redux para distint
 import cart, * as fromCart from './cart'
 import products, * as fromProducts from './product'
 import favorites, * as fromFavorite from './favorite'
+import purchases, * as fromPurchases from './purchases'
 
 export default combineReducers({
   cart,
   products,
-  favorites
+  favorites,
+  purchases
 })
 
 const getAddedIds = state => fromCart.getAddedIds(state.cart)
 const getQuantity = (state, id) => fromCart.getQuantity(state.cart, id)
 const getProduct = (state, id) => fromProducts.getProduct(state.products, id)
 const getProductFavorite = (state, id) => fromFavorite.getProductFavorite(state.favorites, id)
+const getProductPurchases = (state, id) => fromPurchases.getProductPurchases(state.purchases, id)
 const getCustomer = (state) => fromCart.getCustomer(state.cart)
 const getShippingAddress = (state) => fromCart.getShippingAddress(state.cart)
 const getCreditCard = (state) => fromCart.getCreditCard(state.cart)
@@ -35,3 +38,4 @@ export const getCartProducts = state =>
   export const getInfoCreditCard = state => getCreditCard(state)
   export const getInfoShippingAddress = state => getShippingAddress(state)
   export const getInfoProductFavorite = state => getProductFavorite(state)
+  export const getInfoProductPurchases = state => getProductPurchases(state)

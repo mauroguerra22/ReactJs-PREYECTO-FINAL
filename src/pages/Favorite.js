@@ -17,10 +17,10 @@ class Favorite extends Component {
   render() {
     const { favorites } = this.props;
     return(
-      <div>
-        <h3 style={{textAlign: 'center'}}>Lista de Favoritos</h3>
+      <div style={{marginTop: '-15%'}}>
+        <h3 style={{textAlign: 'center'}}>Lista de favoritos</h3>
           <List
-              style={{marginLeft: '35%'}} 
+              style={{marginLeft: '1%'}} 
               itemLayout="horizontal"
               dataSource={favorites}
               renderItem={item => (
