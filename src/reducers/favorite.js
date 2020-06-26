@@ -41,8 +41,8 @@ export default combineReducers({
     visibleIds
 })
 
-export const getProductFavorite = (state, id) =>
+export const getFavorite = (state, id) =>
   state.byId[id]
 
 export const getVisibleProductsFavorites = state =>
-  state.visibleIds.map(id => getProductFavorite(state, id))
+  state.visibleIds.map(id => getFavorite(state, id))

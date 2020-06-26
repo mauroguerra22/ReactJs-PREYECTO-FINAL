@@ -33,7 +33,7 @@ export class Login extends Component {
           firebaseApp.auth.EmailAuthProvider.PROVIDER_ID
         ],
         callbacks: {
-          signInSuccess: () => false
+            signInSuccessWithAuthResult: () => false
         }
     }
 

@@ -70,12 +70,13 @@ export const addToCart = productId => (dispatch, getState) => {
   }
 }
 
-export const checkoutCart = (newShippingAddress, newCreditCard) => dispatch =>  {
+export const checkoutCart = (newShippingAddress, newCreditCard, userName) => dispatch =>  {
   dispatch({
     type: types.CHECKOUT_CART,
     payload: {
       newShippingAddress,
-      newCreditCard
+      newCreditCard,
+      userName
     }
   })
 }

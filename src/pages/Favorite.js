@@ -19,20 +19,20 @@ class Favorite extends Component {
     return(
       <div style={{marginTop: '-15%'}}>
         <h3 style={{textAlign: 'center'}}>Lista de favoritos</h3>
-          <List
-              style={{marginLeft: '1%'}} 
-              itemLayout="horizontal"
-              dataSource={favorites}
-              renderItem={item => (
-                <List.Item key={item.id}>
-                  <List.Item.Meta
-                    avatar={<Avatar src={this.getPhoto(item.id)} />}
-                    title={` ${item.name} | ${item.brand} | $${item.price}` }
-                    description={`Description: ${item.description}`}
-                  />
-                </List.Item>
-              )}
-            />
+              <List
+                  style={{marginLeft: '1%'}} 
+                  itemLayout="horizontal"
+                  dataSource={favorites}
+                  renderItem={item => (
+                    <List.Item key={item.id}>
+                      <List.Item.Meta
+                        avatar={<Avatar src={this.getPhoto(item.id)} />}
+                        title={` ${item.name} | ${item.brand} | $${item.price}` }
+                        description={`Description: ${item.description}`}
+                      />
+                    </List.Item>
+                  )}
+                />
       </div>
     )
   }

@@ -95,10 +95,8 @@ class commonHeader extends Component {
                     <p>{firebaseApp.auth().currentUser.displayName}</p>
                     <Button type="link">Ver Perfil</Button>
                 </Menu.Item>
-                <Menu.Item key="2" icon={<ShoppingCartOutlined />}>
-                    <Link to={{ pathname: '/purchases' }}>
-                        Mis Compras
-                    </Link>                   
+                <Menu.Item key="2" icon={<ShoppingCartOutlined />}>                
+                        Mis Compras                  
                 </Menu.Item>
                 <Menu.Item key="3" icon={<HeartOutlined />}>
                     <Link to={{ pathname: '/favorite' }}>

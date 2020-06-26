@@ -10,14 +10,15 @@ export class Success extends Component {
             <Layout>
                 <Content className="content">
                 <Result
+                    key="1"
                     status="success"
-                    title="Great, we have done all the operations!"
+                    title="¡Genial, hemos hecho todas las operaciones!"
                     extra={[
                         <Link to={{
                             pathname: '/'
                         }}>
                             <Button type="primary" key="console">
-                                Go Home
+                                Volver al inicio
                             </Button>
                         </Link>
                     ]}

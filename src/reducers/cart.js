@@ -39,7 +39,7 @@ const initialState = {
   quantityById: {},
   creditCard: '',
   shippingAddress: '',
-  customer: 'Cristian'
+  customer: ''
 }
 
 const addedIds = (state = initialState.addedIds, action) => {
@@ -97,22 +97,22 @@ case CHECKOUT_CART:
     const newState = {
       addedIds: state.addedIds,
       quantityById: state.quantityById,
-      customer: state.customer,
+      customer: action.payload.userName,
       creditCard: action.payload.newCreditCard,
       shippingAddress: action.payload.newShippingAddress
     }
     createPurchase(newState)
     return initialState
   case ADD_TO_FAVORITE:
-    const newFavorite ={
+    const newFavorite = {
       id:action.payload.newProduct.id,
       name:action.payload.newProduct.name,
       brand:action.payload.newProduct.brand,
       price:action.payload.newProduct.price,
       description:action.payload.newProduct.description
     }
-    createFavorite(newFavorite);
-    return initialState;
+    createFavorite(newFavorite)
+    return initialState
 default:
   return {
     addedIds: addedIds(state.addedIds, action),

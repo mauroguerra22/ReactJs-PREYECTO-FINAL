@@ -10,28 +10,33 @@ import { connect } from 'react-redux';
 import tarjeta1 from '../assets/img/iconos-tarjetas/visa.png';
 import tarjeta2 from '../assets/img/iconos-tarjetas/mastercard.png';
 import tarjeta3 from '../assets/img/iconos-tarjetas/amex.png';
+import { firebaseApp } from "../firebase";
+
+const Favorites = firebaseApp.database().ref().child('favorites');
 
 export class ProductInfo extends Component {
 
     state = {
         value: 3,
+        favorites:[]
     };
-
-    componentDidMount(){
-        this.props.getFetchedProductsFavorites();
-    }
 
     getPhoto(id){
         let photo =`https://firebasestorage.googleapis.com/v0/b/rolling-store-cm.appspot.com/o/products%2F${id}.jpg?alt=media`;
         return photo;
     }
-
+    
     renderRedirectToError = () => {
         return <Redirect to="/error"/>
     }
-
+    
     showMessage = product =>{
-        const resultado = this.props.favorites.find( fav => fav.id === product.id );
+        Favorites.on('value', snapshot => {
+            this.setState({
+                favorites: snapshot.val()
+            })
+          })
+        const resultado = this.state.favorites.find( fav => fav.id === product.id );
         if(resultado){
             this.openNotificationWithIcon('error', product, 'El producto ya se encuentra agregado a favoritos'); 
         }else{
@@ -39,10 +44,10 @@ export class ProductInfo extends Component {
             this.props.checkoutFavorite(product);
         }
     }
-
+    
     openNotificationWithIcon = (type, product, message) => {
         notification[type]({
-          message: message,
+            message: message,
           description: `Product: ${product.name}, Brand: ${product.brand}`,
         });
     };
@@ -50,15 +55,15 @@ export class ProductInfo extends Component {
     handleChange = value => {
         this.setState({ value });
     };
-
+    
     render() {      
-         if(JSON.stringify(this.props.product) === '{}'){           
-             return this.renderRedirectToError();
-         }else{
+        if(JSON.stringify(this.props.product) === '{}'){           
+            return this.renderRedirectToError();
+        }else{
             const { name, price, id, description, shippingTime } = this.props.product;
             const { product, onAddToCartClicked } = this.props; 
             const { value } = this.state;  
-        return (
+            return (
             <Fragment>
                 <Row className="descriptions-product">                       
                             <Col xs={{span:24}} lg={{span:13}} className="col-img-product-info">            
@@ -111,9 +116,10 @@ ProductInfo.propTypes = {
       description: PropTypes.string.isRequired,
       shippingTime: PropTypes.string.isRequired,
     }),
-    onAddToCartClicked: PropTypes.func.isRequired
+    onAddToCartClicked: PropTypes.func.isRequired,
+    checkoutFavorite: PropTypes.func.isRequired
   }
-  
+
   const mapStateToProps = state => ({
     favorites: getVisibleProductsFavorites(state.favorites)
   })

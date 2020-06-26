@@ -26,8 +26,8 @@ export class Results extends Component {
                     {this.setMessage()}                   
                     <Row>
                     {results.map(resul  =>(
-                        <Col xs={{ span: 24 }} lg={{ span: this.getSpanWidth(results.length) }}>
-                            <ProductCard key={resul.id} product={resul} />
+                        <Col key={resul.id} xs={{ span: 24 }} lg={{ span: this.getSpanWidth(results.length) }}>
+                            <ProductCard product={resul} />
                         </Col>
                     ))}                   
                     </Row>
