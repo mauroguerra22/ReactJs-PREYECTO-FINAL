@@ -14,11 +14,11 @@ class ProductsInCart extends Component {
       <div>
         <h3 style={{textAlign: 'center'}}>Lista de Productos</h3>
           <List
-              style={{marginLeft: '35%'}} 
+              size="large"
               itemLayout="horizontal"
               dataSource={products}
               renderItem={item => (
-                <List.Item key={item.id}>
+                <List.Item key={item.id} style={{marginLeft: '25%', background: '#d6e4ff', marginRight: '25%'}}>
                   <List.Item.Meta
                     avatar={<Avatar src={this.getPhoto(item.id)} />}
                     title={` ${item.name} | ${item.brand}`}

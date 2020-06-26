@@ -44,6 +44,7 @@ export class commonModal extends Component {
 
     render() {
         const { visible, confirmLoading, ModalText, showInput } = this.state;
+        const { valueTarjeta, onWriteNumberCard, validateValueCard } = this.props;
         const inModal = true;
         return ( 
           <div>              
@@ -58,7 +59,7 @@ export class commonModal extends Component {
                     okButtonProps={{ hidden: true }}
                     cancelButtonProps={{ hidden: true }}
                   >
-                    <PaymentForm inModal={inModal} handleOk={this.handleOk} handleCancel={this.handleCancel}/>
+                    <PaymentForm inModal={inModal} handleOk={this.handleOk} handleCancel={this.handleCancel} valueTarjeta={valueTarjeta} onWriteNumberCard={onWriteNumberCard} validateValueCard={validateValueCard}/>
                   </Modal>
                   : null
                 }  

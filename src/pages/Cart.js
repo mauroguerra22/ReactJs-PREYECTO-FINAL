@@ -9,11 +9,11 @@ import {
     getInfoShippingAddress, 
     getInfoCreditCard 
 } from "../reducers";
-import { Layout, Row, Col } from'antd';
+import { Layout, Row, Col, Spin, Button  } from'antd';
 import ProductsInCart from '../components/ProductsInCart';
 import CartDetails from '../components/CartDetails';          
-import CommonSpin from '../common/Spin';
-import { Redirect, Link } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom';
+import { ShoppingCartOutlined } from '@ant-design/icons';
 
 const { Content } = Layout;
 
@@ -33,7 +33,7 @@ export class Cart extends Component {
                 this.setState({
                 visible: false,
                 });
-            }, 3000);
+            }, 2000);
         }
     }
 
@@ -46,14 +46,14 @@ export class Cart extends Component {
             return this.renderRedirectToError();
         }else{    
             const { visible } = this.state
-            const { customer, shippingAddress, creditCard, products } = this.props        
+            const { shippingAddress, creditCard, products } = this.props        
        return (           
-            <Layout>
+            <Layout>               
                 {
-                visible ? <CommonSpin/>
+                visible ? <Spin size="large" style={{marginTop: '19%'}}/>
                 :
                 <Content className="content">
-                    <p>Carrito de {customer} </p>
+                    <p> <ShoppingCartOutlined /> Carrito de compras </p>
                     <Row>
                         <Col xs={{ span: 24 }} lg={{ span: 12 }}>
                             <ProductsInCart products={products} />
@@ -61,13 +61,12 @@ export class Cart extends Component {
                         <Col xs={{ span: 24 }} lg={{ span: 12 }}>
                             <CartDetails
                                 shippingAddress={shippingAddress}
-                                creditCard={creditCard}
-                            />
-                        <Link to= {{ pathname: '/' }} className="keepShopping-link">
-                            Seguir comprando
-                        </Link>
+                                creditCard={creditCard}/>
                         </Col>
                     </Row>
+                        <Link to= {{ pathname: '/' }}>
+                            <Button type="link" className="keepShopping-link">Seguir comprando</Button>                        
+                        </Link>
                 </Content>
                 }               
             </Layout>
@@ -79,7 +78,6 @@ export class Cart extends Component {
 Cart.propTypes = {
     products: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
-      //title: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
       quantity: PropTypes.number.isRequired
     })).isRequired,

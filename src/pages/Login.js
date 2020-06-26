@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Input, Button, Checkbox, Card, Layout } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
-import CommonDrawer from '../common/Drawer';
+import { Form, Card, Layout } from 'antd';
 import { firebaseApp } from '../firebase';
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
 
@@ -98,85 +95,24 @@ export class Login extends Component {
     }
 
     render() {
-        const { show, user, password, name, email, domicilio, passworduser } = this.state
-        const toShowDrawer = this.toShowDrawer.bind(this);
-        const validateButtonConfirm = this.validateButtonConfirm.bind(this);
-
         return (
             <Layout>               
             <Header className='header'></Header>
                 <Content className="content-login">
                     <p>E-Commerce</p>                 
-                    <Card style={{ width: '50%' }}>
+                    <Card style={{background: '#f0f5ff'}}>
                         <Form
                             name="basic"
                             initialValues={{
                                 remember: true,
                             }}>
-                            <Form.Item
-                                label="Username"
-                                name="username"
-                                rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input your username!',
-                                },
-                                ]}>
-                                <Input value={user} onChange={this.onWriteUser} allowClear/>
-                            </Form.Item>
-                            <Form.Item
-                                label="Password"
-                                name="password"
-                                rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input your password!',
-                                },
-                                ]}>
-                                <Input.Password value={password} onChange={this.onWritePassword} allowClear/>
-                            </Form.Item>
                             <Form.Item>
-                                {/* <GoogleLogin
-                                    clientId="354596986729-j2kjnq4ttrjh3fsffqi9lbar7ftt6r6o.apps.googleusercontent.com"
-                                    buttonText="Sign in with Google"
-                                    onSuccess={this.responseGoogle}
-                                    onFailure={this.responseGoogle}
-                                    cookiePolicy={'single_host_origin'}/> */}
                                  <StyledFirebaseAuth
                                     uiConfig={this.uiConfig}
                                     firebaseAuth={firebaseApp.auth()}/>   
                             </Form.Item>
-                            <Form.Item>
-                                <Button type="primary" onClick={() => this.toShowDrawer()}>
-                                    <PlusOutlined /> Nueva cuenta
-                                </Button>
-                            </Form.Item>
-                            <Form.Item name="remember" valuePropName="checked">
-                                <Checkbox>Remember me</Checkbox>
-                            </Form.Item>
-                            <Form.Item>
-                                <Link to= {{ pathname: '/' }}>
-                                    <Button type="primary" htmlType="submit" disabled={this.validateButton()}>
-                                        Iniciar
-                                    </Button>
-                                </Link>
-                            </Form.Item>
                         </Form>               
                     </Card>
-                    <CommonDrawer 
-                                text='Crea una cuenta nueva' 
-                                show={show} 
-                                setShow={toShowDrawer}
-                                name={name}
-                                domicilio={domicilio}
-                                email={email}
-                                passworduser={passworduser}
-                                validateButtonConfirm={validateButtonConfirm}
-                                handleChange={this.handleChange}
-                                onWriteName={this.onWriteName}
-                                onWritePasswordUser={this.onWritePasswordUser}
-                                onWriteDomicilio={this.onWriteDomicilio}
-                                onWriteEmail={this.onWriteEmail}/>
                 </Content>
             <Footer className="footer"></Footer>
             </Layout>

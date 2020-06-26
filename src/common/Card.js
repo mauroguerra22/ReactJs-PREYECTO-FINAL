@@ -24,11 +24,13 @@ export class PaymentForm  extends Component {
         const { name, value } = e.target;
         
         this.setState({ [name]: value });
+        
       }
 
       validateFields = () =>{
-          const {cvc, expiry, name, number } = this.state;
-          if(cvc !== '' && expiry !== '' && name !== '' && number !== ''){
+          const {cvc, expiry, name } = this.state;
+          if(cvc !== '' && expiry !== '' && name !== ''){
+            this.props.validateValueCard();
             this.props.handleOk();
           }else{
               this.openNotificationWithIcon('error');
@@ -44,87 +46,71 @@ export class PaymentForm  extends Component {
       };
 
     render() {
+        const { valueTarjeta, onWriteNumberCard } = this.props
         return (
-            <div id="PaymentForm">
+            <div id="PaymentForm" className="centerPayment">
             <Row>
-                <Col xs={{span: 24}} lg={{ span:6 }}>      
+                <Col xs={{span: 24}} lg={{ span:24 }}>      
                     <Cards
                     cvc={this.state.cvc}
                     expiry={this.state.expiry}
                     focused={this.state.focus}
                     name={this.state.name}
-                    number={this.state.number}
+                    number={valueTarjeta}
                     />               
                 </Col>
-                <Col xs={{span: 24}} lg={{ span:18 }}>
+                <Col xs={{span: 24}} lg={{ span:24 }}>
                     <Form 
                         {...layout}
                         name="basic"
                         initialValues={{ remember: true }}
-                        style={{marginLeft: '50%'}}
                         >
                     <Form.Item
-                        style={{marginBottom: '1%',marginTop: '1%'}}
-                        name="number"
-                        // rules={[{ required: true, message: 'Por favor complete este campo!' }]}
-                    >
-                        <Input
-                        style={{borderRadius: 7, width: '150%'}}
+                        style={{marginTop: 10}}
+                        name="number">
+                    <Input
+                        style={{borderRadius: 7, width: '100%'}}
                         type="tel"
                         name="number"
+                        value={valueTarjeta}
                         placeholder="Number"
-                        onChange={this.handleInputChange}
-                        onFocus={this.handleInputFocus}
-                        />
+                        onChange={onWriteNumberCard}
+                        onFocus={this.handleInputFocus}/>
                     </Form.Item>
                     <Form.Item
-                        style={{marginBottom: '1%'}}
-                        name="name"
-                        // rules={[{ required: true, message: 'Por favor complete este campo!' }]}
-                    >
-                        <Input
-                        style={{borderRadius: 7, width: '150%'}}
+                        name="name">
+                    <Input
+                        style={{borderRadius: 10}}
                         type="text"
                         name="name"
                         placeholder="Name"
                         onChange={this.handleInputChange}
-                        onFocus={this.handleInputFocus}
-                        />
+                        onFocus={this.handleInputFocus}/>
                     </Form.Item>
                     <Form.Item
-                        style={{marginBottom: '1%'}}
-                        name="expiry"
-                        // rules={[{ required: true, message: 'Por favor complete este campo!' }]}
-                    >
-                        <Input
-                        style={{borderRadius: 7}}
+                        name="expiry">
+                    <Input
+                        style={{borderRadius: 10}}
                         type="text"
                         name="expiry"
                         placeholder="Expiry"
                         onChange={this.handleInputChange}
-                        onFocus={this.handleInputFocus}
-                        />
+                        onFocus={this.handleInputFocus}/>
                     </Form.Item>
                     <Form.Item
-                        style={{marginBottom: '1%'}}
-                        name="cvc"
-                        // rules={[{ required: true, message: 'Por favor complete este campo!' }]}
-                    >
-                        <Input
-                        style={{width: '48%', borderRadius: 7, marginLeft: '102%', marginTop: '-42%', float: 'left'}}
+                        name="cvc">
+                    <Input
+                        style={{borderRadius: 10}}
                         type="tel"
                         name="cvc"
                         placeholder="Cvc"
                         onChange={this.handleInputChange}
-                        onFocus={this.handleInputFocus}
-                        />
+                        onFocus={this.handleInputFocus}/>
                     </Form.Item>
-                    <Form.Item
-                        style={{marginTop: '-7%',marginBottom:'-3%',marginLeft: '86%'}}
-                    >
+                    <Form.Item>
                         {
                             this.props.inModal ? 
-                            <div style={{ display: 'inline-flex', flexDirection: 'row', float: 'left', marginLeft: '-914%'}}>
+                            <div>
                                 <Button onClick={this.props.handleCancel} style={{ marginRight: 10 }}>
                                     Cancelar
                                 </Button>
@@ -133,8 +119,7 @@ export class PaymentForm  extends Component {
                                 </Button>                       
                             </div>
                             : null
-                        }
-                        
+                        }                       
                     </Form.Item>
                     </Form>
                 </Col>

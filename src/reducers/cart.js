@@ -14,19 +14,24 @@ const Favorites = firebaseApp.database().ref().child('favorites')
 
 const createFavorite = favorite => {
   let quantity = 0
-  
-  Favorites.once('value', snap => {
-    snap.forEach(quantity++)
+  Favorites.on('value', snap => {
+    quantity = Object.keys(snap.val()).length
   })
-
-  quantity > 0 ? 
-    Favorites.child(quantity).push(favorite)
+  quantity > 0 ?
+    Favorites.child(quantity).set(favorite)
   :
     Favorites.child('0').set(favorite)
 }
 
 const createPurchase = state => {
-  Purchases.push(state)
+  let quantity = 0
+  Purchases.on('value', snap => {
+    quantity = Object.keys(snap.val()).length
+  })
+  quantity > 0 ?
+  Purchases.child(quantity).set(state)
+  :
+  Purchases.child('0').set(state)
 }
 
 const initialState = {
