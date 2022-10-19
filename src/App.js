@@ -26,18 +26,18 @@ class App extends Component{
     this.state = {
       results:[],
       term:'',
-      isLogin: false,
+      isLogin: true,
       userGoogle:{}
     }
     this.updateTerm = this.updateTerm.bind(this);
     this.updateList = this.updateList.bind(this);
   }
 
-  componentDidMount = () => {
+  /* componentDidMount = () => {
     firebaseApp.auth().onAuthStateChanged(user => {
       this.setState({ isLogin: !!user })
     })
-  }
+  } */
 
   updateTerm(term){
     this.setState({ term })
@@ -60,7 +60,7 @@ class App extends Component{
     const updateTerm = this.updateTerm.bind(this);
     const updateList = this.updateList.bind(this);
     
-    if(isLogin){
+if(isLogin){
       return ( 
           <Router>
             <CommonHeader

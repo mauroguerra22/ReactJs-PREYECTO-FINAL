@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import logo from '../assets/img/rollingstore.png';
+import logo from '../assets/img/rollingstore-iconos/logo.jpg';
 import { Layout, Row, Col, Input, message, Menu, Dropdown, Button, Avatar } from 'antd';
 import { UserOutlined, ShoppingCartOutlined, HeartOutlined, LoginOutlined } from '@ant-design/icons';
 import { Redirect, Link } from 'react-router-dom'
@@ -90,13 +90,13 @@ class commonHeader extends Component {
 
         const menu = (
             <Menu>
-                <Menu.Item key="1" style={{textAlign: 'center', color: 'black', fontSize: 15 }}>
+                {/* <Menu.Item key="1" style={{textAlign: 'center', color: 'black', fontSize: 15 }}>
                     <Avatar src={firebaseApp.auth().currentUser.photoURL}/>
                     <p>{firebaseApp.auth().currentUser.displayName}</p>
                     <Link to={{ pathname: '/profile' }}>
                         <Button type="link">Ver Perfil</Button>  
                     </Link>
-                </Menu.Item>
+                </Menu.Item> */}
                 <Menu.Item key="2" icon={<ShoppingCartOutlined />}>                
                         Mis Compras                  
                 </Menu.Item>
@@ -138,11 +138,11 @@ class commonHeader extends Component {
                             }
                         </div>
                     </Col>
-                    <Col xs={{ span: 24 }} lg={{ span: 5 }}>
+                    {/* <Col xs={{ span: 24 }} lg={{ span: 5 }}>
                         <Dropdown.Button className='header-greetings' overlay={menu} placement="bottomCenter" icon={<UserOutlined />}>
                             Bienvenido {firebaseApp.auth().currentUser.displayName}
                         </Dropdown.Button>
-                    </Col>
+                    </Col> */}
                 </Row>
             </Header>
         );

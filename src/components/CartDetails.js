@@ -95,7 +95,7 @@ export class CartDetails extends Component {
         const { total, checkoutCart } = this.props
         const toShowModal = this.toShowModal.bind(this);
         const showInput = true;
-        const userName = firebaseApp.auth().currentUser.displayName;
+       /*  const userName = firebaseApp.auth().currentUser.displayName; */
 
         return (
             <div className="cartDestails">                    
@@ -126,7 +126,7 @@ export class CartDetails extends Component {
                         <Link to={{
                             pathname: '/success'
                         }}> 
-                            <Button className="buttonDetails" onClick={() => checkoutCart(shippingAddress, creditCard, userName)} disabled={this.validateButton()}>Confirmar Compra</Button>  
+                            <Button className="buttonDetails" onClick={() => checkoutCart(shippingAddress, creditCard)} disabled={this.validateButton()}>Confirmar Compra</Button>  
                         </Link>                   
                         {
                             show ? <CommonModal text='Ingrese su tarjeta' showInput={showInput} setShow={toShowModal} valueTarjeta={valueTarjeta} onWriteNumberCard={(e) =>this.onWriteNumberCard(e)} validateValueCard={this.validateValueCard}/> : null  

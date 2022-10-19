@@ -3,13 +3,14 @@ import 'firebase/database';
 import 'firebase/auth';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBSoQp4ea4DbNtppmqFr_KGLsgV3B_od3E",
-    authDomain: "rolling-store-cm.firebaseapp.com",
-    databaseURL: "https://rolling-store-cm.firebaseio.com",
-    projectId: "rolling-store-cm",
-    storageBucket: "rolling-store-cm.appspot.com",
-    messagingSenderId: "253147199659",
-    appId: "1:253147199659:web:72b63d2a6746da9a475fee"
+  apiKey: "AIzaSyDwtybDhX45Yu5S3klDJvYKLqPKDdgD85Y",
+  authDomain: "e-commerce-a9ea6.firebaseapp.com",
+  databaseURL: "https://e-commerce-a9ea6-default-rtdb.firebaseio.com",
+  projectId: "e-commerce-a9ea6",
+  storageBucket: "e-commerce-a9ea6.appspot.com",
+  messagingSenderId: "689108994132",
+  appId: "1:689108994132:web:1bfee06d9d1cd7841f45c1",
+  measurementId: "G-RTLGJJ4KJT"
 };
 
 firebase.initializeApp(firebaseConfig);
